@@ -1,0 +1,2 @@
+alias ls="exa --icons --group-directories-first -a"
+alias la="exa --icons --group-directories-first -a -l"
