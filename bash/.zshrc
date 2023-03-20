@@ -82,6 +82,7 @@ plugins=(
 zsh-autosuggestions
 zsh-syntax-highlighting
 colored-man-pages
+command-not-found
 # zsh-interactive-cd
 sudo
 )
