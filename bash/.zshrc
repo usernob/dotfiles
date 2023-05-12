@@ -102,7 +102,11 @@ source $HOME/.cargo/env
 # else
 #   export EDITOR='mvim'
 # fi
-
+# if command -v tmux >/dev/null 2>&1; then
+#   tmux
+# else
+#   echo "tmux is not installed. Please install tmux to use it."
+# fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -116,5 +120,6 @@ source $HOME/.cargo/env
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.aliases
 source $HOME/.env
+source $HOME/.custom_alias.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
