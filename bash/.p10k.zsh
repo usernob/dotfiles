@@ -32,6 +32,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # os_icon                 # os identifier
+    custom
     context
     dir                     # current directory
     vcs                     # git status
@@ -87,11 +88,11 @@
     # toolbox                 # toolbox name (https://github.com/containers/toolbox)
     # context                 # user@hostname
     # nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
-    # ranger                  # ranger shell (https://github.com/ranger/ranger)
+    ranger                  # ranger shell (https://github.com/ranger/ranger)
     # nnn                     # nnn shell (https://github.com/jarun/nnn)
     # lf                      # lf shell (https://github.com/gokcehan/lf)
     # xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
-    # vim_shell               # vim shell indicator (:sh)
+    vim_shell               # vim shell indicator (:sh)
     # midnight_commander      # midnight commander shell (https://midnight-commander.org/)
     # nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     vpn_ip                # virtual private network indicator
@@ -1582,8 +1583,8 @@
   # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and orange text greeting the user.
   #
   # Type `p10k help segment` for documentation and a more sophisticated example.
-  function prompt_example() {
-    p10k segment -f 208 -i '⭐' -t 'hello, %n'
+  function prompt_custom() {
+    p10k segment -f 5 -i '󰋘'
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
@@ -1598,17 +1599,16 @@
   #
   # Usually, you should either not define instant_prompt_* or simply call prompt_* from it. If
   # instant_prompt_* is not defined for a segment, the segment won't be shown in instant prompt.
-  function instant_prompt_example() {
+  function instant_prompt_custom() {
     # Since prompt_example always makes the same `p10k segment` calls, we can call it from
     # instant_prompt_example. This will give us the same `example` prompt segment in the instant
     # and regular prompts.
-    prompt_example
+    prompt_custom
   }
 
   # User-defined prompt segments can be customized the same way as built-in segments.
   # typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   # typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
   #

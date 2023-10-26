@@ -1,0 +1,7 @@
+alias ls="exa --icons --group-directories-first -a"
+alias la="exa --icons --group-directories-first -a -l"
+alias tyten="kitty +kitten"
+alias bat="batcat"
+alias cd="z"
+alias wlog="watch -n 1 'tail -n 10 /var/log/syslog'"
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'

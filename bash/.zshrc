@@ -79,12 +79,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-zsh-autosuggestions
-zsh-syntax-highlighting
-colored-man-pages
-command-not-found
-# zsh-interactive-cd
-sudo
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  colored-man-pages
+  command-not-found
+  sudo
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -118,8 +117,15 @@ source $HOME/.cargo/env
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source $HOME/.aliases
+source $HOME/.alias
 source $HOME/.env
-source $HOME/.custom_alias.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(zoxide init zsh)"
+
+# bun completions
+[ -s "/home/usernob/.bun/_bun" ] && source "/home/usernob/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
