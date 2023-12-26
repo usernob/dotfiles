@@ -195,6 +195,18 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+
+set $mode_gaps Toggle gaps: (1) on (2) off
+
+mode "$mode_gaps" {
+  bindsym 1 mode "default", gaps inner all set 25
+  bindsym 2 mode "default", gaps inner all set 0
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+g mode "$mode_gaps"
+
 # class                 border  bground text    indicator child_border
 client.focused          #83CAFA #51A2DA #FFFFFF #83CAFA   #51A2DA
 client.focused_inactive #8C8C8C #4C4C4C #FFFFFF #4C4C4C   #8C8C8C
