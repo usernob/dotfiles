@@ -1,0 +1,169 @@
+@import "/home/usernob/.cache/wal/colors-waybar.css";
+
+* {
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 14px;
+  min-height: 0;
+}
+
+#waybar {
+  background: transparent;
+  color: @foreground;
+  margin: 5px 5px;
+}
+
+#workspaces {
+  border-radius: 1rem;
+  margin: 5px;
+  padding: 0px 0.5rem;
+  background-color: @background;
+  margin-left: 1rem;
+}
+
+#workspaces button {
+  color: @color7;
+  border-radius: 1rem;
+  padding: 0.2rem;
+}
+
+#workspaces button:nth-child(1) {
+  color: @color2;
+}
+#workspaces button:nth-child(2) {
+  color: @color3;
+}
+#workspaces button:nth-child(3) {
+  color: @color4;
+}
+#workspaces button:nth-child(4) {
+  color: @color5;
+}
+#workspaces button:nth-child(5) {
+  color: @color6;
+}
+
+#workspaces button.focused {
+  color: @color1;
+}
+
+#workspaces button.urgent {
+  background-color: @color1;
+}
+
+#workspaces button.active {
+  color: @color1;
+}
+
+#workspaces button:hover {
+  color: @color7;
+  border-radius: 1rem;
+}
+
+window#waybar #window {
+  color: @foreground;
+  border-radius: 1rem;
+}
+
+window#waybar.empty #window {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+/*  background-color: rgba(66,66,66,0.5); */ /* transparent */
+  background-color: transparent;
+}
+
+#tray,
+#backlight,
+#clock,
+#mpris,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#window,
+#mode,
+#custom-power {
+  background-color: @background;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+}
+
+#mode {
+  border-radius: 1rem;
+}
+
+#clock {
+  color: @color4;
+  border-radius: 0px 1rem 1rem 0px;
+  margin-right: 5px;
+}
+
+#battery {
+  color: @color2;
+}
+
+#battery.charging {
+  color: @color2;
+}
+
+#battery.warning:not(.charging) {
+  color: @color1;
+}
+
+#backlight {
+  color: @color3;
+}
+
+#backlight, #battery {
+    border-radius: 0;
+}
+
+#cpu {
+  color: @color3;
+}
+
+#memory {
+  color: @color5;
+}
+
+#temperature {
+  color: @color4;
+}
+
+#pulseaudio {
+  color: @color6;
+}
+
+#network {
+  color: @color2;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 5px;
+}
+
+#network.disconnected {
+  color: @color1;
+}
+
+#mpris {
+  margin-right: 5px;
+  color: @color2;
+  border-radius: 1rem;
+}
+
+#custom-lock {
+    color: @color4;
+}
+
+#custom-power {
+    margin-right: 1rem;
+    border-radius: 1rem;
+    color: @color1;
+}
+
+
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
+}
