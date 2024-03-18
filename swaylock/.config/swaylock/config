@@ -1,0 +1,10 @@
+ignore-empty-password
+show-failed-attempts
+indicator-idle-visible
+
+image=~/Pictures/wallpapers/wallpaperflare-cropped-s10r1000b0x2.5.jpg
+
+font=JetBrainsMono Nerd Font
+font-size=20
+
+indicator-radius=120
