@@ -3,4 +3,4 @@
 # inhibited?
 ~/.config/sway/idle/inhibitors/pulse.sh || exit 1
 
-swaymsg "output * dpms off"
+swaymsg "output * power off"
