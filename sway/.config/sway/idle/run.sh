@@ -2,9 +2,9 @@
 
 # this script inspired from https://github.com/raidzero/dotfiles/blob/master/.config/sway/idle/run.sh
 
-LOCK_TIMEOUT=30
-let DPMS_TIMEOUT=$LOCK_TIMEOUT+30
-let SUSPEND_TIMEOUT=$DPMS_TIMEOUT+30
+LOCK_TIMEOUT=120
+let DPMS_TIMEOUT=$LOCK_TIMEOUT+60
+let SUSPEND_TIMEOUT=$DPMS_TIMEOUT+120
 
 IDLE=~/.config/sway/idle
 
