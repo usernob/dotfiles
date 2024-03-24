@@ -26,6 +26,12 @@ local servers = { "html", "cssls", "clangd"}
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 -- }
+lspconfig.tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", "node_modules"),
+}
 
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
