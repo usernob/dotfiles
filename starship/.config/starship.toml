@@ -18,10 +18,10 @@ $all\
 $character
 """
 
-
-# [username]
-# style_user = "bold bright-yellow"
-# show_always = true
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
 
 [sudo]
@@ -29,7 +29,7 @@ disabled = false
 
 [fill]
 symbol = "⎻"
-style = "gray"
+style = "236"
 
 [aws]
 symbol = "  "
@@ -51,8 +51,9 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
-truncate_to_repo = false
-style = "blue"
+truncate_to_repo = true
+style = "bold blue"
+fish_style_pwd_dir_length = 1
 
 [docker_context]
 symbol = " "
@@ -77,12 +78,13 @@ format = '([$all_status$ahead_behind]($style) )'
 ahead = '⇡${count} '
 diverged = '⇕⇡${ahead_count}⇣${behind_count} '
 behind = '⇣${count} '
+stashed = "≡ "
 modified = '([ ${count}](bold yellow) )'
 deleted = '([ ${count}](bold red) )'
 renamed = '([ ${count}](bold cyan) )'
 staged = '([󰁠 ${count}](bold green) )'
 untracked = '([ ${count}](bold white) )'
-up_to_date = '([ ](bold green))'
+up_to_date = '([ ](bold green) )'
 ignore_submodules = true
 
 [git_state]

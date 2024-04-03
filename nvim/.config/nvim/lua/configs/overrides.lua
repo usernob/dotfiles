@@ -41,6 +41,9 @@ M.nvimtree = {
 	git = {
 		enable = true,
 	},
+  diagnostics = {
+    enable = true
+  },
 
 	renderer = {
 		root_folder_label = true,
