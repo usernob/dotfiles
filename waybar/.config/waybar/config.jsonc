@@ -1,210 +1,179 @@
 {
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "mpris", "cava", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["network","temperature", "cpu", "memory", "pulseaudio", "backlight", "battery", "clock", "tray", "custom/power"],
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": " {icon} ",
-        "format-icons": {
-            "default": "󰊠",
-            "focused": "󰮯"
-        },
-        "persistent-workspaces": {
-          "1": [],
-          "2": [],
-          "3": [],
-          "4": [],
-          "5": []
-        }
-     },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  // "width": 1280, // Waybar width
+  // Choose the order of the modules
+  "modules-left": ["sway/workspaces", "mpris", "cava", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": [
+    "network",
+    "temperature",
+    "cpu",
+    "memory",
+    "pulseaudio",
+    "backlight",
+    "idle_inhibitor",
+    "battery",
+    "clock",
+    "tray",
+    "custom/power",
+  ],
 
-    "mpris": {
-      "format": "  {player_icon} <b>{dynamic}</b>",
-      "format-paused": "  {status_icon} <b>{dynamic}</b>",
-      "title-len": 30,
-      "player-icons": {
-        "default": ""
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": " {icon} ",
+    "format-icons": {
+      "default": "󰊠",
+      "focused": "󰮯",
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+    },
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
+    },
+  },
+
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10,
+  },
+
+  "mpris": {
+    "format": "  {player_icon} <b>{dynamic}</b>",
+    "format-paused": "  {status_icon} <b>{dynamic}</b>",
+    "dynamic-order": ["title", "artist", "album", "length"],
+    "title-len": 30,
+    "artist-len": 15,
+    "album-len": 10,
+    "player-icons": {
+      "default": "",
+    },
+    "status-icons": {
+      "paused": "",
+    },
+    // "ignored-players": ["firefox"]
+  },
+
+  "cava": {
+    "framerate": 30,
+    "autosens": 1,
+    "sensitivity": 100,
+    "bars": 12,
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "method": "pulse",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": false,
+    "waves": false,
+    "noise_reduction": 0.77,
+    "input_delay": 3,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "actions": {
+      "on-click-right": "mode",
+    },
+  },
+
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "format-critical": "{icon} !{temperatureC}°C",
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["󰜗", "󰜗", "󰜗", "󰜗", ""],
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "tooltip": false,
+  },
+
+  "memory": {
+    "format": " {}%",
+  },
+
+  "network": {
+    "interface": "wlp2s0",
+    "format": "{ifname}",
+    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-ethernet": "󰊗 {ipaddr}/{cidr}",
+    "format-disconnected": "󰤭",
+    "tooltip-format": "󰊗 {ifname} via {gwaddr}",
+    "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": " {ifname}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "~/Downloads/build/networkmanager-dmenu/networkmanager_dmenu",
+  },
+
+  "clock": {
+    "timezone": "Asia/Jakarta",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "<b>󰅐 {:%H:%M}</b>",
+    "format-alt": "<b>󰃭 {:%a, %b %d}</b>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#ff0000'><b><u>{}</u></b></span>",
       },
-      "status-icons": {
-        "paused": ""
-      }
-      // "ignored-players": ["firefox"]
     },
-    "cava": {
-        // "cava_config": "/home/usernob/.config/cava/config",
-        "framerate": 30,
-        "autosens": 1,
-        "sensitivity": 100,
-        "bars": 12,
-        "lower_cutoff_freq": 50,
-        "higher_cutoff_freq": 10000,
-        "method": "pulse",
-        "source": "auto",
-        "stereo": true,
-        "reverse": false,
-        "bar_delimiter": 0,
-        "monstercat": false,
-        "waves": false,
-        "noise_reduction": 0.77,
-        "input_delay": 3,
-        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-        "actions": {
-                   "on-click-right": "mode"
-                   }
-    },
-    "custom/music": {
-        "format": "  {}",
-        "escape": true,
-        "interval": 5,
-        "tooltip": false,
-        "exec": "playerctl metadata --format='{{ title }}'",
-        "on-click": "playerctl play-pause",
-        "max-length": 50
-    },
+  },
 
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        "format-critical": "{icon} !{temperatureC}°C",
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["󰜗","󰜗","󰜗","󰜗",""]
-    },
+  "backlight": {
+    "format": "{icon}",
+    // "format-icons": ["", ""]
+    "format-icons": ["󰽤", "", "", "", "", "", "", "", ""],
+  },
 
-    "cpu": {
-        "format": " {usage}%",
-        "tooltip": false
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
     },
-    "memory": {
-        "format": " {}%"
-    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": [" ", " ", " ", " ", " "],
+  },
 
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-alt": "{icon} {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", " "],
+    },
+    "on-click": "pavucontrol",
+  },
 
-    // "network": {
-    //     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    //     "format-wifi": "{essid} ({signalStrength}%) ",
-    //     "format-ethernet": "Connected  ",
-    //     "tooltip-format": "{ifname} via {gwaddr} ",
-    //     "format-linked": "{ifname} (No IP) ",
-    //     "format-disconnected": "Disconnected ⚠",
-    //     "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    //     "on-click-right": "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu"
-    // },
-    "network": {
-        "interface": "wlp2s0",
-        "format": "{ifname}",
-        "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": "󰊗 {ipaddr}/{cidr}",
-        "format-disconnected": "󰤭",
-        "tooltip-format": "󰊗 {ifname} via {gwaddr}",
-        "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": " {ifname}",
-        "tooltip-format-disconnected": "Disconnected",
-        "max-length": 50,
-        "on-click": "~/Downloads/build/networkmanager-dmenu/networkmanager_dmenu"
+  "sway/window": {
+    "format": "{title}",
+    "max-length": 50,
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "🌎 $1",
+      "nvim (.*)": " $1",
+      "(.*) - zsh": " [$1]",
+      "~": "$HOME",
     },
-    "clock": {
-        "timezone": "Asia/Jakarta",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "<b>󰅐 {:%H:%M}</b>",
-        "format-alt": "<b>󰃭 {:%a, %b %d}</b>",
-        "calendar": {
-            "format": {
-                "today": "<span color='#ff0000'><b><u>{}</u></b></span>"
-            }
-        }
-    },
-    "backlight": {
-        "format": "{icon}",
-        // "format-icons": ["", ""]
-        "format-icons": ["󰽤", "", "", "", "", "", "", "", ""]
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "{icon} {capacity}%",
-        "format-plugged": "  {capacity}%",
-        "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": [" ", " ", " ", " ", " "]
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-muted": "",
-        "format-icons": {
-            "default": ["", "", " "]
-        },
-        "on-click": "pavucontrol"
-    },
-    "sway/window": {
-        "format": "{title}",
-        "max-length": 50,
-        "rewrite": {
-           "(.*) - Mozilla Firefox": "🌎 $1",
-           "nvim (.*)": " $1",
-           "(.*) - zsh": " [$1]",
-           "~": "$HOME"
-        }
-    },
-    // "custom/lock": {
-    //     "tooltip": false,
-    //     "on-click": "sh -c '(sleep 0.5s; swaylock --grace 0)' & disown",
-    //     "format": ""
-    // },
-    // "custom/power": {
-    //     "tooltip": false,
-    //     "on-click": "wlogout &",
-    //     "format": " "
-    // },
+  },
 
-    // "group/group-power": {
-    //     "orientation": "inherit",
-    //     "drawer": {
-    //         "transition-duration": 500,
-    //         "children-class": "not-power",
-    //         "transition-left-to-right": false
-    //     },
-    //     "modules": [
-    //         "custom/power", // First element is the "group leader" and won't ever be hidden
-    //         "custom/quit",
-    //         "custom/reboot",
-    //         "custom/lock"
-    //     ]
-    // },
-    // "custom/quit": {
-    //     "format": "󰗼 ",
-    //     "tooltip": false,
-    //     "on-click": "hyprctl dispatch exit"
-    // },
-    // "custom/lock": {
-    //     "format": "󰍁 ",
-    //     "tooltip": false,
-    //     "on-click": "swaylock"
-    // },
-    // "custom/reboot": {
-    //     "format": "󰜉 ",
-    //     "tooltip": false,
-    //     "on-click": "reboot"
-    // },
-    "custom/power": {
-        "format": "  ",
-        "tooltip": false,
-        "on-click": "wlogout"
-    }
+  "custom/power": {
+    "format": "  ",
+    "tooltip": false,
+    "on-click": "wlogout",
+  },
 }

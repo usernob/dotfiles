@@ -18,6 +18,7 @@ local options = {
 		scss = { "prettier" },
 		less = { "prettier" },
 		vue = { "prettier" },
+		svelte = { "prettier" },
 	},
 }
 

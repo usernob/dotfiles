@@ -21,9 +21,9 @@ set $term /home/usernob/.local/bin/kitty
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu fuzzel | xargs swaymsg exec --
 
-gaps inner 10
-gaps horizontal 15
-gaps bottom 15
+gaps inner 5
+# gaps horizontal 15
+# gaps bottom 15
 
 include $HOME/.cache/wal/colors-sway
 
