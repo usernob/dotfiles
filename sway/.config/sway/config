@@ -22,8 +22,8 @@ set $term /home/usernob/.local/bin/kitty
 set $menu fuzzel | xargs swaymsg exec --
 
 gaps inner 5
-# gaps horizontal 15
-# gaps bottom 15
+gaps horizontal 5
+gaps bottom 5
 
 include $HOME/.cache/wal/colors-sway
 
@@ -225,7 +225,7 @@ bindsym $mod+r mode "resize"
 # }
 
 # bindsym $mod+g mode "$mode_gaps"
-bindsym $mod+g gaps inner all toggle 10, gaps horizontal all toggle 15, gaps bottom all toggle 15
+# bindsym $mod+g gaps inner all toggle 10, gaps horizontal all toggle 15, gaps bottom all toggle 15
 
 #
 # Status Bar:
