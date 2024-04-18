@@ -40,12 +40,12 @@ return {
 		opts = overrides.colorizer,
 	},
 
-	-- my added plugin
+	-- added plugin
 	{ "wakatime/vim-wakatime", lazy = false },
 	{
 		"Exafunction/codeium.vim",
 		event = "BufEnter",
-		init = function()
+		config = function()
 			-- Change '<C-g>' here to any keycode you like.
 			vim.keymap.set("i", "<C-g>", function()
 				return vim.fn["codeium#Accept"]()
@@ -66,8 +66,26 @@ return {
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
+		opts = {},
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		event = "VeryLazy",
+		opts = {},
+	},
+	{
+		"chikko80/error-lens.nvim",
+		event = "LspAttach",
+		opts = {
+			enabled = true,
+		},
+	},
+	{
+		"nvim-telescope/telescope-ui-select.nvim",
+		event = "VeryLazy",
 		config = function()
-			require("nvim-surround").setup()
+			require("telescope").load_extension("ui-select")
 		end,
 	},
 }

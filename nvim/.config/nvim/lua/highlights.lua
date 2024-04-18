@@ -11,7 +11,13 @@ M.override = {
 	CursorLine = {
 		bg = "black2",
 	},
+	CursorLineNr = {
+		bg = "black2",
+	},
 	Comment = {
+		italic = true,
+	},
+	["@comment"] = {
 		italic = true,
 	},
 	FoldColumn = { fg = "grey_fg2", bg = "black" },
@@ -24,9 +30,6 @@ M.override = {
 		bg = "black",
 	},
 	CodeiumSuggestion = { fg = "grey_fg2", italic = true },
-	St_Codeium_bg = { bg = "vibrant_green", fg = "black" },
-	St_Codeium_txt = { bg = "one_bg", fg = "vibrant_green" },
-	St_Codeium_sep = { bg = "one_bg", fg = "vibrant_green" },
 	NavicIconsConstant = { fg = "orange" },
 	NavicIconsFunction = { fg = "pmenu_bg" },
 	NavicIconsField = { fg = "red" },
