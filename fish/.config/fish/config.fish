@@ -5,7 +5,7 @@ end
 set -g fish_greeting
 
 
-set PATH $HOME/.local/bin $HOME/.cargo/bin $PATH
+set PATH $HOME/.local/bin $HOME/.cargo/bin /usr/local/go/bin $PATH
 
 function .runsudo --description 'Run current command line as root'
     commandline -C 0
