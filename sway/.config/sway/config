@@ -33,7 +33,7 @@ smart_corner_radius enable
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/usernob/Pictures/wallpapers/wallpaperflare-cropped.jpg fill
+output * bg $HOME/Pictures/wallpapers/wallhaven-l8vp7y_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -94,7 +94,8 @@ exec mako
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec wlogout -s
 #
 # Moving around:
 #
