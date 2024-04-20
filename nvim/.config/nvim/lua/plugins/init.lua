@@ -79,6 +79,12 @@ return {
 		event = "LspAttach",
 		opts = {
 			enabled = true,
+      auto_adjust = {
+        enable = true,
+        fallback_bg_color = "#1e222a",
+        step = 7,
+        total = 40
+      },
 		},
 	},
 	{
