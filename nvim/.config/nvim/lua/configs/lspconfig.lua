@@ -7,6 +7,8 @@ local capabilities = configs.capabilities
 local lspconfig = require("lspconfig")
 local servers = { "html", "cssls", "clangd" }
 
+require("neodev").setup()
+
 -- for _, lsp in ipairs(servers) do
 --   lspconfig[lsp].setup {
 --     on_init = on_init,
@@ -38,13 +40,18 @@ lspconfig.lua_ls.setup({
 			},
 			workspace = {
 				library = {
-					vim.fn.expand("/usr/share/nvim/runtime/lua"),
-					vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
 					vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
 				},
+        checkThirdParty = false,
 				maxPreload = 100000,
 				preloadFileSize = 10000,
 			},
+      codelens = {
+        enable = true
+      },
+      completion = {
+        callSnippet = "Replace"
+      }
 		},
 	},
 })
