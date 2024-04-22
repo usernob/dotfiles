@@ -8,13 +8,6 @@ return {
 		end,
 	},
 
-	{
-		"nvim-tree/nvim-tree.lua",
-		opts = {
-			git = { enable = true },
-		},
-	},
-
 	-- In order to modify the `lspconfig` configuration:
 	{
 		"neovim/nvim-lspconfig",
@@ -32,13 +25,16 @@ return {
 	},
 
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		opts = overrides.blankline,
-	},
-	{
 		"NvChad/nvim-colorizer.lua",
 		opts = overrides.colorizer,
 	},
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = overrides.treesitter,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    }
+  },
 
 	-- added plugin
 	{ "wakatime/vim-wakatime", lazy = false },
