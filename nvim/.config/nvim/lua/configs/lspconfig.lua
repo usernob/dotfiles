@@ -4,6 +4,30 @@ local lspconfig = require("lspconfig")
 
 require("neodev").setup()
 
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "󰅙",
+			[vim.diagnostic.severity.INFO] = "󰋼",
+			[vim.diagnostic.severity.HINT] = "󰌵",
+			[vim.diagnostic.severity.WARN] = "",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+		},
+		linehl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticLineHlError",
+			[vim.diagnostic.severity.INFO] = "DiagnosticLineHlInfo",
+			[vim.diagnostic.severity.HINT] = "DiagnosticLineHlHint",
+			[vim.diagnostic.severity.WARN] = "DiagnosticLineHlWarn",
+		},
+	},
+	severity_sort = true,
+})
+
 local servers = {
 	html = {},
 

@@ -71,19 +71,6 @@ return {
 		opts = {},
 	},
 	{
-		"chikko80/error-lens.nvim",
-		event = "LspAttach",
-		opts = {
-			enabled = true,
-			auto_adjust = {
-				enable = true,
-				fallback_bg_color = "#1e222a",
-				step = 7,
-				total = 40,
-			},
-		},
-	},
-	{
 		"nvim-telescope/telescope-ui-select.nvim",
 		event = "VeryLazy",
 		config = function()
