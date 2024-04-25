@@ -48,7 +48,7 @@ local function color_bend(hex1, hex2, step, total)
 end
 
 local function get_default_diagnostic_colors(bg_color, hl_group, step, total)
-	local fg = string.format("#%06x", vim.api.nvim_get_hl(0, {name = hl_group}).fg)
+	local fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = hl_group }).fg)
 
 	return color_bend(bg_color, fg, step, total)
 end
