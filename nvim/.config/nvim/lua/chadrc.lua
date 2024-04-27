@@ -14,6 +14,9 @@ M.ui = {
 	cmp = {
 		style = "atom_colored",
 	},
+  nvdash = {
+    load_on_startup = true
+  }
 }
 
 return M
