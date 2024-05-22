@@ -6,7 +6,9 @@ return {
 
 		local lspconfig = require("lspconfig")
 
-		require("neodev").setup()
+		if vim.fn.expand("%:e") == "lua" then
+			require("neodev").setup()
+		end
 
 		vim.diagnostic.config({
 			signs = {
@@ -71,11 +73,21 @@ return {
 					},
 				},
 			},
+			clangd = {},
 		}
 
 		for name, opts in pairs(servers) do
 			opts.on_init = configs.on_init
-			opts.on_attach = configs.on_attach
+			opts.on_attach = function(client, bufnr)
+				configs.on_attach(client, bufnr)
+				local ok, navic = pcall(require, "nvim-navic")
+				if not ok then
+					return
+				end
+				if client.server_capabilities.documentSymbolProvider then
+					navic.attach(client, bufnr)
+				end
+			end
 			opts.capabilities = configs.capabilities
 
 			require("lspconfig")[name].setup(opts)

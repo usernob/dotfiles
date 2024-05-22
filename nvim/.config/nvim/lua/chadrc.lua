@@ -9,6 +9,9 @@ M.ui = {
 	hl_override = highlights.override,
 	hl_add = highlights.add,
 
+  tabufline = {
+    enabled = false
+  },
 	statusline = require("statusline"),
 
 	cmp = {
