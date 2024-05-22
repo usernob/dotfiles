@@ -9,17 +9,17 @@ M.ui = {
 	hl_override = highlights.override,
 	hl_add = highlights.add,
 
-  tabufline = {
-    enabled = false
-  },
+	tabufline = {
+		enabled = false,
+	},
 	statusline = require("statusline"),
 
 	cmp = {
 		style = "atom_colored",
 	},
-  nvdash = {
-    load_on_startup = true
-  }
+	nvdash = {
+		load_on_startup = true,
+	},
 }
 
 return M

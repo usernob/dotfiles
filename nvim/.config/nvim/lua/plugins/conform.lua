@@ -22,8 +22,8 @@ return {
 			vue = { "prettier" },
 			svelte = { "prettier" },
 			astro = { "prettier" },
-      cpp = { "clang-format" },
-      c = { "clang-format" },
+			cpp = { "clang-format" },
+			c = { "clang-format" },
 		},
 	},
 }
