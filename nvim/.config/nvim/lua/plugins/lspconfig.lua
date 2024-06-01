@@ -6,6 +6,8 @@ return {
 
 		local lspconfig = require("lspconfig")
 
+		local installed_servers = require("mason-lspconfig").get_installed_servers()
+
 		if vim.fn.expand("%:e") == "lua" then
 			require("neodev").setup()
 		end
@@ -35,8 +37,6 @@ return {
 		})
 
 		local servers = {
-			html = {},
-
 			tsserver = {
 				filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 				root_dir = lspconfig.util.root_pattern(
@@ -73,8 +73,11 @@ return {
 					},
 				},
 			},
-			clangd = {},
 		}
+
+		for _, server in ipairs(installed_servers) do
+			servers[server] = servers[server] or {}
+		end
 
 		for name, opts in pairs(servers) do
 			opts.on_init = configs.on_init
