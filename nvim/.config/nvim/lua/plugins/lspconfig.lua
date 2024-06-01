@@ -70,6 +70,10 @@ return {
 						completion = {
 							callSnippet = "Replace",
 						},
+						hint = {
+							enable = true,
+							setType = true,
+						},
 					},
 				},
 			},
@@ -81,16 +85,25 @@ return {
 
 		for name, opts in pairs(servers) do
 			opts.on_init = configs.on_init
+
+			--- @type vim.lsp.client.on_attach_cb
 			opts.on_attach = function(client, bufnr)
 				configs.on_attach(client, bufnr)
+
+				if client.server_capabilities.inlayHintProvider then
+					vim.lsp.inlay_hint.enable(true)
+				end
+
 				local ok, navic = pcall(require, "nvim-navic")
 				if not ok then
 					return
 				end
+
 				if client.server_capabilities.documentSymbolProvider then
 					navic.attach(client, bufnr)
 				end
 			end
+
 			opts.capabilities = configs.capabilities
 
 			require("lspconfig")[name].setup(opts)
