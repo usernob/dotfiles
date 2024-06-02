@@ -7,9 +7,12 @@ end
 ---@type NvStatusLineConfig
 local M = {
 	theme = "minimal",
-	order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "codeium", "ext_cursor" },
+	order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "filetype", "codeium", "ext_cursor" },
 
 	modules = {
+		filetype = function()
+			return gen_block("", vim.bo.filetype, "%#St_cwd_sep#", "%#St_cwd_bg#", "%#St_cwd_txt#")
+		end,
 		codeium = function()
 			local status = vim.call("codeium#GetStatusString")
 			local icon = "󰚩"
