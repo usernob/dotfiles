@@ -1,6 +1,6 @@
 return {
 	"williamboman/mason.nvim",
-  dependencies = { "williamboman/mason-lspconfig.nvim" },
+	dependencies = { "williamboman/mason-lspconfig.nvim" },
 	opts = {
 		ensure_installed = {
 			-- lua stuff
