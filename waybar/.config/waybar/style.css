@@ -72,6 +72,10 @@
   color: @color1;
 }
 
+#workspaces button.empty {
+  color: @color7;
+}
+
 #workspaces button:hover {
   color: @color7;
   border-radius: 10px;

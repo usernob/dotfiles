@@ -3,8 +3,8 @@
   "position": "top", // Waybar position (top|bottom|left|right)
   // "width": 1280, // Waybar width
   // Choose the order of the modules
-  "modules-left": ["sway/workspaces", "mpris", "cava", "sway/mode"],
-  "modules-center": ["sway/window"],
+  "modules-left": ["hyprland/workspaces", "mpris"],
+  "modules-center": ["hyprland/window"],
   "modules-right": [
     "network",
     "temperature",
@@ -19,14 +19,14 @@
     "custom/power",
   ],
 
-  "sway/workspaces": {
+  "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
     "format": " {icon} ",
     "format-icons": {
       "default": "󰊠",
-      "focused": "󰮯",
+      "active": "󰮯",
     },
     "persistent-workspaces": {
       "1": [],
@@ -53,7 +53,7 @@
   "mpris": {
     "format": "  {player_icon} <b>{dynamic}</b>",
     "format-paused": "  {status_icon} <b>{dynamic}</b>",
-    "dynamic-order": ["title", "artist", "album", "length"],
+    "dynamic-order": ["title", "artist"],
     "title-len": 30,
     "artist-len": 15,
     "album-len": 10,
@@ -62,29 +62,6 @@
     },
     "status-icons": {
       "paused": "",
-    },
-    // "ignored-players": ["firefox"]
-  },
-
-  "cava": {
-    "framerate": 30,
-    "autosens": 1,
-    "sensitivity": 100,
-    "bars": 12,
-    "lower_cutoff_freq": 50,
-    "higher_cutoff_freq": 10000,
-    "method": "pulse",
-    "source": "auto",
-    "stereo": true,
-    "reverse": false,
-    "bar_delimiter": 0,
-    "monstercat": false,
-    "waves": false,
-    "noise_reduction": 0.77,
-    "input_delay": 3,
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "actions": {
-      "on-click-right": "mode",
     },
   },
 
@@ -136,6 +113,7 @@
     "format": "{icon}",
     // "format-icons": ["", ""]
     "format-icons": ["󰽤", "", "", "", "", "", "", "", ""],
+    "tooltip-format": "{percent}%",
   },
 
   "battery": {
@@ -153,21 +131,23 @@
   "pulseaudio": {
     "format": "{icon}",
     "format-alt": "{icon} {volume}%",
+    "tooltip-format": "{volume}%",
     "format-muted": "",
     "format-icons": {
+      "headphone": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
       "default": ["", "", " "],
     },
     "on-click": "pavucontrol",
   },
 
-  "sway/window": {
-    "format": "{title}",
+  "hyprland/window": {
+    "format": "{class}  {title}",
     "max-length": 50,
     "rewrite": {
-      "(.*) - Mozilla Firefox": "🌎 $1",
-      "nvim (.*)": " $1",
-      "(.*) - zsh": " [$1]",
-      "~": "$HOME",
+      "(kitty .*)": "  $1",
     },
   },
 
