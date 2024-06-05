@@ -27,5 +27,8 @@ map("n", "]t", function()
 end, { desc = "Next error/warning todo comment" })
 
 map("n", "<leader>ih", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 end, { desc = "Toggle inlay hints" })
+
+map("n", "t", "<CMD>tabnext<CR>", { desc = "Next tab" })
+map("n", "T", "<CMD>tabprevious<CR>", { desc = "Previous tab" })
