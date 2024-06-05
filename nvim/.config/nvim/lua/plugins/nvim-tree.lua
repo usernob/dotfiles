@@ -12,7 +12,7 @@ return {
 		},
 
 		renderer = {
-			root_folder_label = true,
+			root_folder_label = ":p:h",
 			highlight_git = true,
 			indent_markers = {
 				enable = true,
