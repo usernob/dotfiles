@@ -83,8 +83,13 @@ return {
 			servers[server] = servers[server] or {}
 		end
 
+		configs.capabilities.textDocument.foldingRange = {
+			dynamicRegistration = false,
+			lineFoldingOnly = true,
+		}
+
 		for name, opts in pairs(servers) do
-			opts.on_init = configs.on_init
+			-- opts.on_init = configs.on_init
 
 			--- @type vim.lsp.client.on_attach_cb
 			opts.on_attach = function(client, bufnr)
