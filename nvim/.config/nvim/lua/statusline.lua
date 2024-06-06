@@ -14,7 +14,10 @@ local M = {
 			return gen_block("", vim.bo.filetype, "%#St_cwd_sep#", "%#St_cwd_bg#", "%#St_cwd_txt#")
 		end,
 		codeium = function()
-			local status = vim.call("codeium#GetStatusString")
+			local ok, status = pcall(vim.call, "codeium#GetStatusString")
+			if not ok then
+				status = "OFF"
+			end
 			local icon = "󰚩"
 			if status == "OFF" then
 				icon = "󱚧"
