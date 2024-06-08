@@ -12,33 +12,11 @@ return {
 			require("neodev").setup()
 		end
 
-		vim.diagnostic.config({
-			signs = {
-				text = {
-					[vim.diagnostic.severity.ERROR] = "󰅙",
-					[vim.diagnostic.severity.INFO] = "󰋼",
-					[vim.diagnostic.severity.HINT] = "󰌵",
-					[vim.diagnostic.severity.WARN] = "",
-				},
-				numhl = {
-					[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-					[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-					[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-					[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-				},
-				linehl = {
-					[vim.diagnostic.severity.ERROR] = "DiagnosticLineHlError",
-					[vim.diagnostic.severity.INFO] = "DiagnosticLineHlInfo",
-					[vim.diagnostic.severity.HINT] = "DiagnosticLineHlHint",
-					[vim.diagnostic.severity.WARN] = "DiagnosticLineHlWarn",
-				},
-			},
-			severity_sort = true,
-		})
-
+		--- @type table<string, lspconfig.Config>
 		local servers = {
 			tsserver = {
 				filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+				---@diagnostic disable-next-line: assign-type-mismatch
 				root_dir = lspconfig.util.root_pattern(
 					"package.json",
 					"tsconfig.json",
@@ -48,6 +26,7 @@ return {
 			},
 			rust_analyzer = {
 				filetypes = { "rust" },
+				---@diagnostic disable-next-line: assign-type-mismatch
 				root_dir = lspconfig.util.root_pattern("Cargo.toml", "rust-project.json"),
 			},
 			lua_ls = {
@@ -91,7 +70,6 @@ return {
 		for name, opts in pairs(servers) do
 			-- opts.on_init = configs.on_init
 
-			--- @type vim.lsp.client.on_attach_cb
 			opts.on_attach = function(client, bufnr)
 				configs.on_attach(client, bufnr)
 
@@ -99,8 +77,32 @@ return {
 					vim.lsp.inlay_hint.enable(true)
 				end
 
-				local ok, navic = pcall(require, "nvim-navic")
-				if not ok then
+				vim.diagnostic.config({
+					signs = {
+						text = {
+							[vim.diagnostic.severity.ERROR] = "󰅙",
+							[vim.diagnostic.severity.INFO] = "󰋼",
+							[vim.diagnostic.severity.HINT] = "󰌵",
+							[vim.diagnostic.severity.WARN] = "",
+						},
+						numhl = {
+							[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+							[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+							[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+							[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+						},
+						linehl = {
+							[vim.diagnostic.severity.ERROR] = "DiagnosticLineHlError",
+							[vim.diagnostic.severity.INFO] = "DiagnosticLineHlInfo",
+							[vim.diagnostic.severity.HINT] = "DiagnosticLineHlHint",
+							[vim.diagnostic.severity.WARN] = "DiagnosticLineHlWarn",
+						},
+					},
+					severity_sort = true,
+				})
+
+				local navic_ok, navic = pcall(require, "nvim-navic")
+				if not navic_ok then
 					return
 				end
 
