@@ -26,6 +26,7 @@
 #pulseaudio,
 #window,
 #mode,
+#submap,
 #custom-power {
   background-color: @background;
   padding: 0.5rem 1rem;
@@ -65,15 +66,12 @@
 }
 
 #workspaces button.urgent {
+  color: @background;
   background-color: @color1;
 }
 
 #workspaces button.active {
   color: @color1;
-}
-
-#workspaces button.empty {
-  color: @color7;
 }
 
 #workspaces button:hover {
@@ -174,4 +172,10 @@ window#waybar.empty #window {
 #tray {
   margin-right: 5px;
   border-radius: 10px;
+}
+
+#submap {
+  margin-right: 5px;
+  border-radius: 10px;
+  color: @foreground;
 }
