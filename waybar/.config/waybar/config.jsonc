@@ -3,7 +3,7 @@
   "position": "top", // Waybar position (top|bottom|left|right)
   // "width": 1280, // Waybar width
   // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces", "hyprland/submap", "mpris"],
+  "modules-left": ["hyprland/workspaces", "hyprland/submap", "mpris", "cava"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "network",
@@ -32,12 +32,6 @@
     "persistent-workspaces": {
       "*": 5,
     },
-    "window-rewrite-default": "󰊠",
-    "window-rewrite": {
-      //"title<.*youtube.*>": "", // Windows whose titles contain "youtube"
-      "org.mozilla.firefox": "", // Windows whose classes are "firefox"
-      "kitty": "", // Windows that contain "foot" in either class or title. For optimization reasons, it will only match against a title if at least one other window explicitly matches against a title.
-    },
   },
 
   "hyprland/submap": {
@@ -63,7 +57,7 @@
     "format": "  {player_icon} <b>{dynamic}</b>",
     "format-paused": "  {status_icon} <b>{dynamic}</b>",
     "dynamic-order": ["title", "artist"],
-    "title-len": 30,
+    "title-len": 20,
     "artist-len": 15,
     "album-len": 10,
     "player-icons": {
@@ -72,6 +66,19 @@
     "status-icons": {
       "paused": "",
     },
+  },
+
+  "cava": {
+    "framerate": 120,
+    "autosens": 1,
+    "bars": 12,
+    "method": "pipewire",
+    "source": "auto",
+    "bar_delimiter": 0,
+    "input_delay": 2,
+    "sleep_timer": 2,
+    "hide_on_silence": true,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
   },
 
   "temperature": {
@@ -156,7 +163,7 @@
     "format": "{initialTitle}  {title}",
     "max-length": 50,
     "rewrite": {
-      "(( kitty|fish|zsh|foot|Alacritty ) .*)": "  $1",
+      "((kitty|fish|Alacritty|zsh).*)": "  $1",
     },
   },
 

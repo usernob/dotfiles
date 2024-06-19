@@ -27,6 +27,7 @@
 #window,
 #mode,
 #submap,
+#cava,
 #custom-power {
   background-color: @background;
   padding: 0.5rem 1rem;
@@ -157,6 +158,12 @@ window#waybar.empty #window {
   margin-right: 5px;
   color: @color2;
   border-radius: 10px;
+}
+
+#cava {
+  margin-right: 5px;
+  border-radius: 10px;
+  color: @foreground;
 }
 
 #custom-lock {
