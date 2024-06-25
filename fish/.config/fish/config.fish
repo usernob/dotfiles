@@ -18,3 +18,5 @@ bind \es .runsudo
 starship init fish | source
 
 zoxide init --cmd cd fish | source
+
+eval (dircolors -c)

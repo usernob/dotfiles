@@ -1,7 +1,12 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR EDITOR:nvim
+SETUVAR --export EDITOR:nvim
+SETUVAR --export MANPAGER:nvim\x20\x2bMan\x21
 SETUVAR __fish_initialized:3400
+SETUVAR _fisher_gazorby_2F_fifc_files:\x7e/\x2econfig/fish/functions/_fifc\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_action\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_completion_group\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_expand_tilde\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_open_cmd\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_open_dir\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_open_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_open_fn\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_open_opt\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_open_process\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_parse_complist\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_parse_pid\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_path_to_complete\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_preview_cmd\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_preview_dir\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_preview_file_default\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_preview_fn\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_preview_opt\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_preview_process\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_source_directories\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_source_files\x2efish\x1e\x7e/\x2econfig/fish/functions/_fifc_test_version\x2efish\x1e\x7e/\x2econfig/fish/functions/fifc\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fifc\x2efish\x1e\x7e/\x2econfig/fish/completions/fifc\x2efish
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1egazorby/fifc
+SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR background:\x231e222a
 SETUVAR color0:\x231e222a
 SETUVAR color1:\x23e06c75
@@ -20,14 +25,19 @@ SETUVAR color7:\x23abb2bf
 SETUVAR color8:\x23545862
 SETUVAR color9:\x23e06c75
 SETUVAR cursor:\x23abb2bf
-SETUVAR fish_color_autosuggestion:545862
+SETUVAR fifc_bat_opts:\x2d\x2dstyle\x3dnumbers\x1e\x2d\x2dtheme\x3dbase16
+SETUVAR --export fifc_editor:nvim
+SETUVAR fifc_exa_opts:\x2d\x2dicons\x1ealways
+SETUVAR fifc_fd_opts:\x1d
+SETUVAR fifc_open_keybinding:ctrl\x2do
+SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
-SETUVAR fish_color_command:98c379
-SETUVAR fish_color_comment:545862
+SETUVAR fish_color_command:green
+SETUVAR fish_color_comment:\x2d\x2ddim
 SETUVAR fish_color_cwd:green
 SETUVAR fish_color_cwd_root:red
-SETUVAR fish_color_end:61afef
-SETUVAR fish_color_error:e06c75
+SETUVAR fish_color_end:cyan
+SETUVAR fish_color_error:red\x1e\x2d\x2dbold
 SETUVAR fish_color_escape:e5c07b
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host:abb2bf
@@ -35,10 +45,10 @@ SETUVAR fish_color_host_remote:\x1d
 SETUVAR fish_color_keyword:\x1d
 SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
 SETUVAR fish_color_normal:normal
-SETUVAR fish_color_operator:e5c07b
-SETUVAR fish_color_option:\x1d
-SETUVAR fish_color_param:abb2bf
-SETUVAR fish_color_quote:98c379
+SETUVAR fish_color_operator:normal
+SETUVAR fish_color_option:magenta
+SETUVAR fish_color_param:normal
+SETUVAR fish_color_quote:yellow
 SETUVAR fish_color_redirection:e06c75
 SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
@@ -46,19 +56,19 @@ SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
 SETUVAR fish_key_bindings:fish_default_key_bindings
-SETUVAR fish_pager_color_background:\x1d
-SETUVAR fish_pager_color_completion:\x1d
-SETUVAR fish_pager_color_description:98c379\x1eyellow
-SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
-SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_pager_color_background:black
+SETUVAR fish_pager_color_completion:white
+SETUVAR fish_pager_color_description:green\x1e\x2d\x2dbold
+SETUVAR fish_pager_color_prefix:red\x1e\x2d\x2dbold
+SETUVAR fish_pager_color_progress:white
 SETUVAR fish_pager_color_secondary_background:\x1d
 SETUVAR fish_pager_color_secondary_completion:\x1d
 SETUVAR fish_pager_color_secondary_description:\x1d
-SETUVAR fish_pager_color_secondary_prefix:\x1d
-SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dFFCC66
-SETUVAR fish_pager_color_selected_completion:\x1d
-SETUVAR fish_pager_color_selected_description:\x1d
-SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:\x1d
+SETUVAR fish_pager_color_secondary_prefix:red\x1e\x2d\x2dbold
+SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dwhite
+SETUVAR fish_pager_color_selected_completion:black
+SETUVAR fish_pager_color_selected_description:black\x1e\x2d\x2dbold
+SETUVAR fish_pager_color_selected_prefix:brred\x1e\x2d\x2dbold
+SETUVAR fish_user_paths:/home/usernob/\x2elocal/share/nvim/mason/bin\x1e/home/usernob/\x2efzf/bin
 SETUVAR foreground:\x23abb2bf
 SETUVAR wallpaper:None
