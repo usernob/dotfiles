@@ -7,12 +7,39 @@ end
 ---@type NvStatusLineConfig
 local M = {
 	theme = "minimal",
-	order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "filetype", "codeium", "ext_cursor" },
+	order = {
+		"mode",
+		"file",
+		"git",
+		"%=",
+		"lsp_msg",
+		"%=",
+		"diagnostics",
+		"lsp",
+		"recording_mode",
+		"filetype",
+		"codeium",
+		"ext_cursor",
+	},
 
 	modules = {
+		recording_mode = function()
+			local ok, noice = pcall(require, "noice")
+			if not ok then
+				return ""
+			end
+
+			if not noice.api.status.mode.has() then
+				return ""
+			end
+
+			return "%#St_file_txt# " .. noice.api.status.mode.get() .. " "
+		end,
+
 		filetype = function()
 			return gen_block("", vim.bo.filetype, "%#St_cwd_sep#", "%#St_cwd_bg#", "%#St_cwd_txt#")
 		end,
+
 		codeium = function()
 			local ok, status = pcall(vim.call, "codeium#GetStatusString")
 			if not ok then

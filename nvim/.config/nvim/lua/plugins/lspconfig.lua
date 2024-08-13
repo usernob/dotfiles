@@ -8,10 +8,6 @@ return {
 
 		local installed_servers = require("mason-lspconfig").get_installed_servers()
 
-		if vim.fn.expand("%:e") == "lua" then
-			require("neodev").setup()
-		end
-
 		--- @type table<string, lspconfig.Config>
 		local servers = {
 			tsserver = {
@@ -56,6 +52,9 @@ return {
 					},
 				},
 			},
+			hyprls = {
+				filetypes = { "*.hl", "hypr*.conf", ".config/hypr/*.conf", "hyprlang" },
+			},
 		}
 
 		for _, server in ipairs(installed_servers) do
@@ -67,49 +66,60 @@ return {
 			lineFoldingOnly = true,
 		}
 
-		for name, opts in pairs(servers) do
-			-- opts.on_init = configs.on_init
+		--- @param client vim.lsp.Client
+		--- @param bufnr integer
+		local on_attach = function(client, bufnr)
+			configs.on_attach(client, bufnr)
 
-			opts.on_attach = function(client, bufnr)
-				configs.on_attach(client, bufnr)
-
-				if client.server_capabilities.inlayHintProvider then
-					vim.lsp.inlay_hint.enable(true)
-				end
-
-				vim.diagnostic.config({
-					signs = {
-						text = {
-							[vim.diagnostic.severity.ERROR] = "󰅙",
-							[vim.diagnostic.severity.INFO] = "󰋼",
-							[vim.diagnostic.severity.HINT] = "󰌵",
-							[vim.diagnostic.severity.WARN] = "",
-						},
-						numhl = {
-							[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-							[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-							[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-							[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-						},
-						linehl = {
-							[vim.diagnostic.severity.ERROR] = "DiagnosticLineHlError",
-							[vim.diagnostic.severity.INFO] = "DiagnosticLineHlInfo",
-							[vim.diagnostic.severity.HINT] = "DiagnosticLineHlHint",
-							[vim.diagnostic.severity.WARN] = "DiagnosticLineHlWarn",
-						},
-					},
-					severity_sort = true,
-				})
-
-				local navic_ok, navic = pcall(require, "nvim-navic")
-				if not navic_ok then
-					return
-				end
-
-				if client.server_capabilities.documentSymbolProvider then
-					navic.attach(client, bufnr)
-				end
+			if client.server_capabilities.inlayHintProvider then
+				vim.lsp.inlay_hint.enable(true)
 			end
+
+			vim.diagnostic.config({
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = "󰅙",
+						[vim.diagnostic.severity.INFO] = "󰋼",
+						[vim.diagnostic.severity.HINT] = "󰌵",
+						[vim.diagnostic.severity.WARN] = "",
+					},
+					numhl = {
+						[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+						[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+						[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+						[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+					},
+					linehl = {
+						[vim.diagnostic.severity.ERROR] = "DiagnosticLineHlError",
+						[vim.diagnostic.severity.INFO] = "DiagnosticLineHlInfo",
+						[vim.diagnostic.severity.HINT] = "DiagnosticLineHlHint",
+						[vim.diagnostic.severity.WARN] = "DiagnosticLineHlWarn",
+					},
+				},
+				severity_sort = true,
+			})
+
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = "rounded",
+			})
+
+			local navic_ok, navic = pcall(require, "nvim-navic")
+			if not navic_ok then
+				return
+			end
+
+			if client.server_capabilities.documentSymbolProvider then
+				navic.attach(client, bufnr)
+			end
+		end
+
+		for name, opts in pairs(servers) do
+			opts.on_init = configs.on_init
+
+			opts.on_attach = on_attach
 
 			opts.capabilities = configs.capabilities
 

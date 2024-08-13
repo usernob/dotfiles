@@ -9,9 +9,7 @@ M.ui = {
 	hl_override = highlights.override,
 	hl_add = highlights.add,
 
-	tabufline = {
-		enabled = false,
-	},
+	tabufline = require("tabufline"),
 	statusline = require("statusline"),
 
 	cmp = {
@@ -19,6 +17,15 @@ M.ui = {
 	},
 	nvdash = {
 		load_on_startup = true,
+	},
+}
+
+M.lsp = { signature = false }
+
+M.base46 = {
+	integrations = {
+		"dap",
+		"neogit",
 	},
 }
 

@@ -1,5 +1,6 @@
 return {
 	"stevearc/conform.nvim",
+	cond = false,
 	opts = {
 		lsp_fallback = true,
 
@@ -24,6 +25,13 @@ return {
 			astro = { "prettier" },
 			cpp = { "clang-format" },
 			c = { "clang-format" },
+		},
+	},
+	keys = {
+		{
+			"<leader>fm",
+			"<CMD>lua require('conform').format({ async = true })<CR>",
+			desc = "File Format with conform",
 		},
 	},
 }
