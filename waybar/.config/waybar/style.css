@@ -1,37 +1,66 @@
 @import "colors.css";
 
 * {
-  font-family: JetBrainsMono Nerd Font;
+  font-family: GeistMono Nerd Font;
   font-size: 14px;
+  font-weight: bold;
+  min-width: 0;
   min-height: 0;
 }
 
 #waybar {
   background: transparent;
   color: @foreground;
-  margin: 5px 5px;
 }
 
 #workspaces,
-#tray,
-#idle_inhibitor,
-#backlight,
-#clock,
 #mpris,
-#battery,
-#cpu,
-#memory,
-#temperature,
-#network,
-#pulseaudio,
-#window,
+#cava,
 #mode,
 #submap,
-#cava,
+#window,
+#temperature,
+#cpu,
+#memory,
+#idle_inhibitor,
+#network,
+#pulseaudio,
+#backlight,
+#battery,
+#clock,
+#tray,
+#privacy,
 #custom-power {
   background-color: @background;
-  padding: 0.5rem 1rem;
-  margin: 5px 0 0 0;
+  margin-top: 5px;
+  padding-top: 0.67rem;
+  padding-bottom: 0.67rem;
+}
+
+#workspaces,
+#mpris,
+#cava,
+#mode,
+#submap,
+#window,
+#tray,
+#clock,
+#privacy,
+#custom-power {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#temperature,
+#cpu,
+#memory,
+#idle_inhibitor,
+#network,
+#pulseaudio,
+#backlight,
+#battery {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 #workspaces {
@@ -42,8 +71,9 @@
 
 #workspaces button {
   color: @color7;
-  border-radius: 10px;
-  padding: 0.2rem;
+  border-radius: 5px;
+  padding-left: 0rem;
+  padding-right: 0.2rem;
 }
 
 #workspaces button:nth-child(1) {
@@ -77,7 +107,6 @@
 
 #workspaces button:hover {
   color: @color7;
-  border-radius: 10px;
 }
 
 window#waybar #window {
@@ -94,6 +123,10 @@ window#waybar.empty #window {
 }
 
 #idle_inhibitor {
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 5px;
   color: @color1;
 }
 
@@ -102,13 +135,19 @@ window#waybar.empty #window {
 }
 
 #clock {
+  font-size: 16px;
   color: @color4;
-  border-radius: 0px 10px 10px 0px;
-  margin-right: 5px;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-left: 5px;
 }
 
 #battery {
   color: @color2;
+  border-radius: 0px 10px 10px 0px;
+  padding-right: 1rem;
 }
 
 #battery.charging {
@@ -123,10 +162,10 @@ window#waybar.empty #window {
   color: @color3;
 }
 
-#backlight,
-#battery {
-  border-radius: 0;
-}
+/* #backlight, */
+/* #battery { */
+/*   border-radius: 0; */
+/* } */
 
 #cpu {
   color: @color3;
@@ -134,10 +173,15 @@ window#waybar.empty #window {
 
 #memory {
   color: @color5;
+  border-radius: 0px 10px 10px 0px;
+  padding-right: 1rem;
 }
 
 #temperature {
   color: @color4;
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 1rem;
+  margin-left: 5px;
 }
 
 #pulseaudio {
@@ -146,8 +190,6 @@ window#waybar.empty #window {
 
 #network {
   color: @color2;
-  border-radius: 10px 0px 0px 10px;
-  margin-left: 5px;
 }
 
 #network.disconnected {
@@ -176,8 +218,8 @@ window#waybar.empty #window {
   color: @color1;
 }
 
-#tray {
-  margin-right: 5px;
+#tray, #privacy {
+  margin-left: 5px;
   border-radius: 10px;
 }
 

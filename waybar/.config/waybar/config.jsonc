@@ -3,20 +3,19 @@
   "position": "top", // Waybar position (top|bottom|left|right)
   // "width": 1280, // Waybar width
   // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces", "hyprland/submap", "mpris", "cava"],
+  "modules-left": ["hyprland/workspaces", "hyprland/submap", "mpris"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    "network",
+    "tray",
     "temperature",
     "cpu",
     "memory",
+    "idle_inhibitor",
+    "network",
     "pulseaudio",
     "backlight",
-    "idle_inhibitor",
     "battery",
     "clock",
-    "tray",
-    "custom/power",
   ],
 
   "hyprland/workspaces": {
@@ -26,7 +25,7 @@
     "format": " {icon} ",
     "format-icons": {
       "default": "󰊠",
-      "empty": "󱙝",
+      "empty": "",
       "active": "󰮯",
     },
     "persistent-workspaces": {
@@ -54,17 +53,17 @@
   },
 
   "mpris": {
-    "format": "  {player_icon} <b>{dynamic}</b>",
-    "format-paused": "  {status_icon} <b>{dynamic}</b>",
+    "format": "{player_icon} <b>{dynamic}</b>",
+    "format-paused": "{status_icon} <b>{dynamic}</b>",
     "dynamic-order": ["title", "artist"],
     "title-len": 20,
     "artist-len": 15,
     "album-len": 10,
     "player-icons": {
-      "default": "",
+      "default": " ",
     },
     "status-icons": {
-      "paused": "",
+      "paused": " ",
     },
   },
 
@@ -91,18 +90,18 @@
   },
 
   "cpu": {
-    "format": " {usage}%",
+    "format": " {usage}",
     "tooltip": false,
   },
 
   "memory": {
-    "format": " {}%",
+    "format": " {}",
   },
 
   "network": {
     "interface": "wlp2s0",
     "format": "{ifname}",
-    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-wifi": "  {signalStrength}",
     "format-ethernet": "󰊗 {ipaddr}/{cidr}",
     "format-disconnected": "󰤭",
     "tooltip-format": "󰊗 {ifname} via {gwaddr}",
@@ -120,13 +119,13 @@
     "format-alt": "<b>󰃭 {:%a, %b %d}</b>",
     "calendar": {
       "format": {
-        "today": "<span color='#ff0000'><b><u>{}</u></b></span>",
+        "today": "<span color='#ff0000'><b>{}</b></span>",
       },
     },
   },
 
   "backlight": {
-    "format": "{icon}",
+    "format": "{icon} {percent}",
     // "format-icons": ["", ""]
     "format-icons": ["󰽤", "", "", "", "", "", "", "", ""],
     "tooltip-format": "{percent}%",
@@ -137,20 +136,19 @@
       "warning": 30,
       "critical": 15,
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": "  {capacity}%",
+    "format": "{icon} {capacity}",
+    "format-charging": " {capacity}",
+    "format-plugged": "  {capacity}",
     "format-alt": "{icon} {time}",
     "format-icons": [" ", " ", " ", " ", " "],
   },
 
   "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-alt": "{icon}",
-    "tooltip-format": "{volume}%",
+    "format": "{icon} {volume}",
+    "tooltip-format": "{desc} ({volume}%)",
     "format-muted": "",
     "format-icons": {
-      "headphone": "",
+      "headphone": "",
       "phone": "",
       "portable": "",
       "car": "",
@@ -165,6 +163,29 @@
     "rewrite": {
       "((kitty|fish|Alacritty|zsh).*)": "  $1",
     },
+  },
+
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
   },
 
   "custom/power": {
