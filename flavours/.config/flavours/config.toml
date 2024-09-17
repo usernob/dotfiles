@@ -1,0 +1,21 @@
+shell = "bash -c '{}'"
+
+[[items]]
+file = "~/.cache/flavours/colors.css"
+template = "css"
+rewrite = true
+
+[[items]]
+file = "~/.cache/flavours/colors-kitty.conf"
+template = "kitty"
+rewrite = true
+
+[[items]]
+file = "~/.cache/flavours/colors-waybar.css"
+template = "waybar"
+rewrite = true
+
+[[items]]
+file = "~/.cache/flavours/colors.lua"
+template = "lua"
+rewrite = true
