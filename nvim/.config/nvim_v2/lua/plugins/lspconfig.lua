@@ -1,8 +1,8 @@
 return {
 	"neovim/nvim-lspconfig",
-	event = "BufRead",
 	config = function()
-		local M = {}
+		require("nvchad.configs.lspconfig").defaults()
+		local configs = require("nvchad.configs.lspconfig")
 
 		local lspconfig = require("lspconfig")
 
@@ -10,7 +10,7 @@ return {
 
 		--- @type table<string, lspconfig.Config>
 		local servers = {
-			ts_ls = {
+			tsserver = {
 				filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 				---@diagnostic disable-next-line: assign-type-mismatch
 				root_dir = lspconfig.util.root_pattern(
@@ -32,6 +32,9 @@ return {
 							globals = { "vim" },
 						},
 						workspace = {
+							library = {
+								vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
+							},
 							checkThirdParty = false,
 							maxPreload = 100000,
 							preloadFileSize = 10000,
@@ -52,23 +55,22 @@ return {
 			hyprls = {
 				filetypes = { "*.hl", "hypr*.conf", ".config/hypr/*.conf", "hyprlang" },
 			},
-			clangd = {
-				capabilities = {
-					offsetEncoding = { "utf-16" },
-				},
-			},
 		}
 
 		for _, server in ipairs(installed_servers) do
-			if server == "tsserver" then
-				server = "ts_ls"
-			end
 			servers[server] = servers[server] or {}
 		end
 
+		configs.capabilities.textDocument.foldingRange = {
+			dynamicRegistration = false,
+			lineFoldingOnly = true,
+		}
+
 		--- @param client vim.lsp.Client
 		--- @param bufnr integer
-		M.on_attach = function(client, bufnr)
+		local on_attach = function(client, bufnr)
+			configs.on_attach(client, bufnr)
+
 			if client.server_capabilities.inlayHintProvider then
 				vim.lsp.inlay_hint.enable(true)
 			end
@@ -97,73 +99,29 @@ return {
 				severity_sort = true,
 			})
 
-			-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-			-- 	border = "rounded",
-			-- })
-			-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-			-- 	border = "rounded",
-			-- })
-			--
-			-- local navic_ok, navic = pcall(require, "nvim-navic")
-			-- if not navic_ok then
-			-- 	return
-			-- end
-			--
-			-- if client.server_capabilities.documentSymbolProvider then
-			-- 	navic.attach(client, bufnr)
-			-- end
-		end
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = "rounded",
+			})
 
-		M.capabilities = vim.lsp.protocol.make_client_capabilities()
+			local navic_ok, navic = pcall(require, "nvim-navic")
+			if not navic_ok then
+				return
+			end
 
-		M.capabilities.textDocument.foldingRange = {
-			dynamicRegistration = false,
-			lineFoldingOnly = true,
-		}
-
-		M.capabilities.textDocument.completion.completionItem = {
-			documentationFormat = { "markdown", "plaintext" },
-			snippetSupport = true,
-			preselectSupport = true,
-			insertReplaceSupport = true,
-			labelDetailsSupport = true,
-			deprecatedSupport = true,
-			commitCharactersSupport = true,
-			tagSupport = { valueSet = { 1 } },
-			resolveSupport = {
-				properties = {
-					"documentation",
-					"detail",
-					"additionalTextEdits",
-				},
-			},
-		}
-
-		--- @param client vim.lsp.Client
-		M.on_init = function(client, _)
-			-- if client.supports_method("textDocument/semanticTokens") then
-			-- 	client.server_capabilities.semanticTokensProvider = nil
-			-- end
+			if client.server_capabilities.documentSymbolProvider then
+				navic.attach(client, bufnr)
+			end
 		end
 
 		for name, opts in pairs(servers) do
-			opts.on_init = M.on_init
+			opts.on_init = configs.on_init
 
-			opts.on_attach = M.on_attach
+			opts.on_attach = on_attach
 
-			opts.handlers = {
-				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-					border = "rounded",
-					max_width = 100,
-					max_height = 30,
-				}),
-				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-					border = "rounded",
-				}),
-			}
-			-- opts.capabilities = M.capabilities
-			opts.capabilities = opts.capabilities or {}
-			opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities, M.capabilities)
+			opts.capabilities = configs.capabilities
 
 			require("lspconfig")[name].setup(opts)
 		end

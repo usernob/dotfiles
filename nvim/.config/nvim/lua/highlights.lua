@@ -1,178 +1,127 @@
--- To find any highlight groups: "<cmd> Telescope highlights"
--- Each highlight group can take a table with variables fg, bg, bold, italic, etc
--- base30 variable names can also be used as colors
+local base16 = require("colors")
+-- this is comment
+--- @type table<string, vim.api.keyset.highlight>
+local M = {
+	Normal = { fg = base16.base05, bg = base16.base00 },
+	NormalNC = { fg = base16.base05, bg = base16.base00 },
+	NormalFloat = { bg = base16.base00 },
+	Pmenu = { bg = base16.base01 },
+	PmenuSel = { bg = base16.base0D, fg = base16.base00, bold = true },
+	WinSeparator = { fg = base16.base02 },
+	Directory = { fg = base16.base0D },
+	LineNr = { fg = base16.base03 },
+	CursorLineNr = { fg = base16.base05 },
+	CursorLine = { bg = base16.base01 },
+	Title = { fg = base16.base0D },
+	Visual = { bg = base16.base02 },
 
--- local base16 = require("base46").get_theme_tb "base_16"
--- local colors = require("base46").get_theme_tb "base_30"
+	ErrorMsg = { fg = base16.base08 },
+	WarningMsg = { fg = base16.base0A },
+	ModeMsg = { fg = base16.base0B },
+	MoreMsg = { fg = base16.base0C },
+	Question = { fg = base16.base0D },
 
--- ---convert hex to r, g, b values
--- ---@param hex string
--- ---@return number?
--- ---@return number?
--- ---@return number?
--- local function hexToRGB(hex)
--- 	hex = hex:gsub("#", "")
--- 	return tonumber("0x" .. hex:sub(1, 2)), tonumber("0x" .. hex:sub(3, 4)), tonumber("0x" .. hex:sub(5, 6))
--- end
---
--- ---convert r, g, b values to hex format
--- ---@param r integer
--- ---@param g integer
--- ---@param b integer
--- ---@return string
--- function RGBToHex(r, g, b)
--- 	return string.format("#%02X%02X%02X", r, g, b)
--- end
---
--- -- #1e222a
--- -- rgb(30,34,42)
--- -- #e06c75
--- -- rgb(224, 108, 117)
--- -- rgb(74, 51, 58)
---
--- ---bend 2 color
--- ---@param hex1 string
--- ---@param hex2 string
--- ---@param step string
--- ---@param total string
--- ---@return string
--- local function color_bend(hex1, hex2, step, total)
--- 	local r1, g1, b1 = hexToRGB(hex1)
--- 	local r2, g2, b2 = hexToRGB(hex2)
--- 	local t = step / total
---
--- 	local r = r1 + (r2 - r1) * t
--- 	local g = g1 + (g2 - g1) * t
--- 	local b = b1 + (b2 - b1) * t
---
--- 	return RGBToHex(math.floor(r), math.floor(g), math.floor(b))
--- end
---
--- local function get_default_diagnostic_colors(bg_color, hl_group, step, total)
--- 	local fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = hl_group }).fg)
---
--- 	return color_bend(bg_color, fg, step, total)
--- end
---
--- local function get_default_theme_bg_color()
--- 	local theme_color = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
---
--- 	if theme_color ~= nil then
--- 		return string.format("#%06x", theme_color)
--- 	else
--- 		return "#1e222a"
--- 	end
--- end
+	Comment = { fg = base16.base04, italic = true },
+	Operator = { fg = base16.base05 },
+	Identifier = { fg = base16.base05 },
 
-local M = {}
+	Delimiter = { fg = base16.base08 },
+	Removed = { fg = base16.base08 },
+	Constant = { fg = base16.base08 },
 
----@type HLTable
-M.override = {
-	CursorLine = {
-		bg = "black2",
-	},
-	-- LineNr = {
-	-- 	fg = "grey_fg",
-	-- },
-	Comment = {
-		link = "@comment",
-	},
-	["@comment"] = {
-		fg = "grey_fg2",
-		italic = true,
-	},
-	LspInlayHint = {
-		italic = true,
-		fg = "grey_fg",
-		bg = "NONE",
-	},
-	FoldColumn = { fg = "grey_fg2", bg = "black" },
-	NvimTreeOpenedFolderName = { fg = "green", bold = true },
-	NvimTreeEndOfBuffer = { fg = "black" },
-	NvimTreeNormalNC = { bg = "black" },
-	NvimTreeNormal = { bg = "black" },
-	NvimTreeWinSeparator = {
-		fg = "black",
-		bg = "black",
-	},
-	DiffAdd = { fg = "NONE", bg = { "green", -40 }, underline = false },
-	DiffDelete = { fg = "grey", bg = "black" },
-	DiffText = { fg = "NONE", bg = { "blue", -40 } },
-	DiffChange = { fg = "NONE", bg = { "blue", -50 } },
+	Number = { fg = base16.base09 },
+	Boolean = { fg = base16.base09 },
 
-	DiffAdded = { fg = "green" },
-	DiffRemoved = { fg = "red" },
+	Type = { fg = base16.base0A },
+	StorageClass = { fg = base16.base0A },
+	PreProc = { fg = base16.base0A },
+	Label = { fg = base16.base0A },
+	Changed = { fg = base16.base0A },
 
-	St_sep_r = { fg = "black", bg = "black" },
-	St_EmptySpace = { fg = "black", bg = "black" },
+	String = { fg = base16.base0B },
+	Character = { fg = base16.base0B },
+	Added = { fg = base16.base0B },
 
-	St_file_txt = { bg = "black" },
-	St_Pos_txt = { bg = "black" },
-	St_cwd_txt = { bg = "black" },
-	St_lsp_txt = { bg = "black" },
+	Special = { fg = base16.base0D },
 
-	St_NormalmodeText = { bg = "black" },
-	St_VisualmodeText = { bg = "black" },
-	St_InsertmodeText = { bg = "black" },
-	St_TerminalmodeText = { bg = "black" },
-	St_NTerminalmodeText = { bg = "black" },
-	St_ReplacemodeText = { bg = "black" },
-	St_ConfirmmodeText = { bg = "black" },
-	St_CommandmodeText = { bg = "black" },
-	St_SelectmodeText = { bg = "black" },
+	Function = { fg = base16.base0D },
+	Include = { fg = base16.base0D },
 
-	TbFill = { bg = "black" },
-	TbBufOn = { bold = true },
-	TbBufOff = { bg = "black" },
-	TbBufOffClose = { bg = "black" },
-	TbBufOffModified = { bg = "black" },
+	Keyword = { fg = base16.base0E },
+	Statement = { fg = base16.base0E },
+	Conditional = { fg = base16.base0E },
+	Repeat = { fg = base16.base0E },
 
-	["@comment.todo"] = { bg = "NONE", fg = "green", bold = true, underline = true },
-	["@comment.error"] = { bg = "NONE", fg = "red", bold = true, underline = true },
-	["@comment.danger"] = { bg = "NONE", fg = "red", bold = true, underline = true },
-	["@comment.note"] = { bg = "NONE", fg = "purple", bold = true, underline = true },
-	["@comment.warning"] = { bg = "NONE", fg = "yellow", bold = true, underline = true },
+	["@variable"] = { link = "Identifier" },
+	["@Variable.builtin"] = { fg = base16.base09 },
+	["@variable.parameter"] = { fg = base16.base08 },
+	["@variable.member"] = { fg = base16.base08 },
+
+	["@character.special"] = { fg = base16.base09 },
+
+	["@property"] = { link = "@variable.member" },
+
+	["@function.macro"] = { link = "Constant" },
+
+	["@keyword.import"] = { link = "Include" },
+
+	["@type.builtin"] = { link = "Type" },
+
+	["@lsp.typemod.variable.readonly"] = { link = "Constant" },
+	["@lsp.typemod.parameter.readonly"] = { link = "Constant" },
+	["@lsp.type.namespace"] = { link = "Constant" },
+
+	DiagnosticError = { fg = base16.base08 },
+	DiagnosticWarn = { fg = base16.base0A },
+	DiagnosticInfo = { fg = base16.base0B },
+	DiagnosticHint = { fg = base16.base0E },
+
+	["@comment.todo"] = { link = "DiagnosticHint" },
+
+	LspInlayHint = { link = "Comment" },
+	LspSignatureActiveParameter = { bg = base16.base0B },
+
+	IblIndent = { fg = base16.base03 },
+	IblScope = { fg = base16.base04 },
+
+	StatusLine = { fg = base16.base05, bg = base16.base00, bold = true },
+	StatusLineNC = { link = "StatusLine" },
+	St_Normal = { link = "StatusLine" },
+	St_Normal2 = { fg = base16.base04, bg = base16.base00, bold = true },
+
+	CmpItemAbbr = { fg = base16.base05 },
+	CmpItemAbbrDeprecated = { fg = base16.base04, strikethrough = true },
+	CmpItemAbbrMatch = { fg = base16.base0D, bold = true },
+	CmpItemKindConstant = { bg = base16.base08, fg = base16.base00, bold = true },
+	CmpItemKindFunction = { bg = base16.base0D, fg = base16.base00, bold = true },
+	CmpItemKindIdentifier = { bg = base16.base08, fg = base16.base00, bold = true },
+	CmpItemKindField = { bg = base16.base08, fg = base16.base00, bold = true },
+	CmpItemKindVariable = { bg = base16.base0E, fg = base16.base00, bold = true },
+	CmpItemKindSnippet = { bg = base16.base08, fg = base16.base00, bold = true },
+	CmpItemKindText = { bg = base16.base05, fg = base16.base00, bold = true },
+	CmpItemKindStructure = { bg = base16.base0E, fg = base16.base00, bold = true },
+	CmpItemKindType = { bg = base16.base0A, fg = base16.base00, bold = true },
+	CmpItemKindKeyword = { bg = base16.base0E, fg = base16.base00, bold = true },
+	CmpItemKindMethod = { bg = base16.base0D, fg = base16.base00, bold = true },
+	CmpItemKindConstructor = { bg = base16.base0D, fg = base16.base00, bold = true },
+	CmpItemKindFolder = { bg = base16.base0B, fg = base16.base00, bold = true },
+	CmpItemKindModule = { bg = base16.base0A, fg = base16.base00, bold = true },
+	CmpItemKindProperty = { bg = base16.base08, fg = base16.base00, bold = true },
+	CmpItemKindEnum = { bg = base16.base0E, fg = base16.base00, bold = true },
+	CmpItemKindUnit = { bg = base16.base0E, fg = base16.base00, bold = true },
+	CmpItemKindClass = { bg = base16.base0A, fg = base16.base00, bold = true },
+	CmpItemKindFile = { bg = base16.base0B, fg = base16.base00, bold = true },
+	CmpItemKindInterface = { bg = base16.base0C, fg = base16.base00, bold = true },
+	CmpItemKindColor = { bg = base16.base0C, fg = base16.base00, bold = true },
+	CmpItemKindReference = { bg = base16.base05, fg = base16.base00, bold = true },
+	CmpItemKindEnumMember = { bg = base16.base0E, fg = base16.base00, bold = true },
+	CmpItemKindStruct = { bg = base16.base0E, fg = base16.base00, bold = true },
+	CmpItemKindValue = { bg = base16.base0C, fg = base16.base00, bold = true },
+	CmpItemKindEvent = { bg = base16.base0A, fg = base16.base00, bold = true },
+	CmpItemKindOperator = { bg = base16.base05, fg = base16.base00, bold = true },
+	CmpItemKindTypeParameter = { bg = base16.base08, fg = base16.base00, bold = true },
 }
 
----@type HLTable
-M.add = {
-	CodeiumSuggestion = { fg = "grey_fg2", italic = true },
-	St_Codeium_bg = { bg = "vibrant_green", fg = "black" },
-	St_Codeium_txt = { bg = "black", fg = "vibrant_green" },
-	St_Codeium_sep = { bg = "black", fg = "vibrant_green" },
-	DiagnosticLineHlError = {
-		fg = nil,
-		bg = { "red", 5 }, -- get_default_diagnostic_colors(get_default_theme_bg_color(), "DiagnosticError", 7, 30),
-	},
-	DiagnosticLineHlInfo = {
-		fg = nil,
-		bg = { "blue", 5 }, -- get_default_diagnostic_colors(get_default_theme_bg_color(), "DiagnosticInfo", 9, 30),
-	},
-	DiagnosticLineHlHint = {
-		fg = nil,
-		bg = { "purple", 5 }, -- get_default_diagnostic_colors(get_default_theme_bg_color(), "DiagnosticHint", 7, 30),
-	},
-	DiagnosticLineHlWarn = {
-		fg = nil,
-		bg = { "yellow", 5 }, -- get_default_diagnostic_colors(get_default_theme_bg_color(), "DiagnosticWarn", 9, 30),
-	},
-
-	-- NOTE: aaaaa
-	-- PERF: aaaaa
-	-- WARNING: aaaaaa
-	-- TODO: aaaaa
-	NotifyERRORBorder = { link = "DiagnosticError" },
-	NotifyWARNBorder = { link = "DiagnosticWarn" },
-	NotifyINFOBorder = { link = "DiagnosticInfo" },
-	NotifyTRACEBorder = { link = "DiagnosticHint" },
-	NotifyERRORIcon = { link = "DiagnosticError" },
-	NotifyWARNIcon = { link = "DiagnosticWarn" },
-	NotifyINFOIcon = { link = "DiagnosticInfo" },
-	NotifyTRACEIcon = { link = "DiagnosticHint" },
-	NotifyERRORTitle = { link = "DiagnosticError" },
-	NotifyWARNTitle = { link = "DiagnosticWarn" },
-	NotifyINFOTitle = { link = "DiagnosticInfo" },
-	NotifyTRACETitle = { link = "DiagnosticHint" },
-}
-
-return M
+for key, value in pairs(M) do
+	vim.api.nvim_set_hl(0, key, value)
+end

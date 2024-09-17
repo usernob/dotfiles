@@ -19,7 +19,7 @@ return {
 				formatting.clang_format,
 				formatting.cmake_format,
 
-				diagnostics.cmake_lint,
+				diagnostics.cmake_lint
 			}
 
 			-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})

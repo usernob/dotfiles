@@ -4,8 +4,21 @@ return {
 	{
 		"kylechui/nvim-surround",
 		version = "*",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		opts = {},
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		event = "BufReadPost",
+		cond = false,
+		opts = {
+			highlight = {
+				pattern = [[.*<(KEYWORDS)\s*\d*:]],
+				after = "",
+			},
+			pattern = [[\b(KEYWORDS)\s*\d*:]],
+		},
 	},
 	{
 		"m-demare/hlargs.nvim",
@@ -53,14 +66,7 @@ return {
 	},
 	{
 		"stevearc/oil.nvim",
-		event = "VeryLazy",
-		opts = {
-			default_file_explorrer = true,
-			win_options = {
-				signcolumn = "yes",
-				foldcolumn = "1",
-			},
-		},
+		opts = {},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 		keys = {
@@ -71,67 +77,20 @@ return {
 			},
 		},
 	},
+	{
+		"NvChad/base46",
+		branch = "blending-colors",
+		url = "https://github.com/usernob/base46",
+		build = function()
+			require("base46").load_all_highlights()
+		end,
+	},
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = "VeryLazy",
-		opts = {
-			indent = { char = "│" },
-			scope = { char = "│" },
-		},
 		config = function(_, opts)
+			dofile(vim.g.base46_cache .. "blankline")
 			require("ibl").setup(opts)
 		end,
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		event = "VeryLazy",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "-" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-				untracked = { text = "?" },
-			},
-		},
-	},
-
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-	},
-
-	{
-		"akinsho/bufferline.nvim",
-		event = "BufReadPost",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		opts = {},
-	},
-
-	{
-		"Everblush/nvim",
-		name = "everblush",
-		lazy = false,
-		cond = false,
-		init = function()
-			vim.cmd("colorscheme everblush")
-		end,
-	},
-
-	{
-		"linrongbin16/lsp-progress.nvim",
-		event = "LspAttach",
-		opts = {},
-	},
-
-	{
-		"levouh/tint.nvim",
-		event = "VeryLazy",
-		opts = {
-			tint = -50,
-			saturate = 0.8
-		},
 	},
 }

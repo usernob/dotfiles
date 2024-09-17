@@ -1,32 +1,19 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = "BufReadPost",
-	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-	build = ":TSUpdate",
 	opts = {
 		ensure_installed = {
 			"vim",
-			"vimdoc",
 			"lua",
 			"html",
 			"css",
 			"javascript",
 			"typescript",
 			"c",
-			"cpp",
 			"markdown",
 			"markdown_inline",
 			"ini",
 			"xml",
 			"yaml",
-			"lua",
-			"luadoc",
-			"printf",
-			"comment",
-		},
-		highlight = {
-			enable = true,
-			use_languagetree = true,
 		},
 		indent = {
 			enable = true,
@@ -67,7 +54,4 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
-	config = function(_, opts)
-		require("nvim-treesitter.configs").setup(opts)
-	end,
 }

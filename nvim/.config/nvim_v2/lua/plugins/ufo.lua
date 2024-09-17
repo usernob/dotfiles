@@ -1,11 +1,11 @@
 return {
 	{
 		"kevinhwang91/nvim-ufo",
-		event = "VeryLazy",
 		dependencies = {
 			"kevinhwang91/promise-async",
 			"luukvbaal/statuscol.nvim",
 		},
+		event = "BufReadPost",
 		opts = {},
 		config = function(_, opts)
 			local ufo = require("ufo")
@@ -24,8 +24,6 @@ return {
 	},
 	{
 		"luukvbaal/statuscol.nvim",
-		event = "BufReadPost",
-		opts = {},
 		config = function()
 			local builtin = require("statuscol.builtin")
 			require("statuscol").setup({
