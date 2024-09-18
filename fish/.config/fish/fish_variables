@@ -7,24 +7,6 @@ SETUVAR _fisher_gazorby_2F_fifc_files:\x7e/\x2elocal/share/fisher/functions/_fif
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2elocal/share/fisher/functions/fisher\x2efish\x1e\x7e/\x2elocal/share/fisher/completions/fisher\x2efish
 SETUVAR _fisher_plugins:gazorby/fifc\x1ejorgebucaran/fisher
 SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR background:\x231e222a
-SETUVAR color0:\x231e222a
-SETUVAR color1:\x23e06c75
-SETUVAR color10:\x2398c379
-SETUVAR color11:\x23e5c07b
-SETUVAR color12:\x2361afef
-SETUVAR color13:\x23c678dd
-SETUVAR color14:\x2356b6c2
-SETUVAR color15:\x23c8ccd4
-SETUVAR color2:\x2398c379
-SETUVAR color3:\x23e5c07b
-SETUVAR color4:\x2361afef
-SETUVAR color5:\x23c678dd
-SETUVAR color6:\x2356b6c2
-SETUVAR color7:\x23abb2bf
-SETUVAR color8:\x23545862
-SETUVAR color9:\x23e06c75
-SETUVAR cursor:\x23abb2bf
 SETUVAR fifc_bat_opts:\x2d\x2dstyle\x3dnumbers\x1e\x2d\x2dtheme\x3dbase16
 SETUVAR --export fifc_editor:nvim
 SETUVAR fifc_exa_opts:\x2d\x2dicons\x1ealways
@@ -70,5 +52,4 @@ SETUVAR fish_pager_color_selected_completion:black
 SETUVAR fish_pager_color_selected_description:black\x1e\x2d\x2dbold
 SETUVAR fish_pager_color_selected_prefix:brred\x1e\x2d\x2dbold
 SETUVAR fish_user_paths:/home/usernob/\x2elocal/share/nvim/mason/bin\x1e/home/usernob/\x2efzf/bin
-SETUVAR foreground:\x23abb2bf
 SETUVAR wallpaper:None

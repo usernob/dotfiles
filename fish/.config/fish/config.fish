@@ -15,8 +15,12 @@ function .runsudo --description 'Run current command line as root'
 end
 bind \es .runsudo
 
-starship init fish | source
+if type -q starship
+    starship init fish | source
+end
 
-zoxide init --cmd cd fish | source
+if type -q zoxide
+    zoxide init --cmd cd fish | source
+end
 
 eval (dircolors -c)
