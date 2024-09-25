@@ -96,22 +96,6 @@ return {
 				},
 				severity_sort = true,
 			})
-
-			-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-			-- 	border = "rounded",
-			-- })
-			-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-			-- 	border = "rounded",
-			-- })
-			--
-			-- local navic_ok, navic = pcall(require, "nvim-navic")
-			-- if not navic_ok then
-			-- 	return
-			-- end
-			--
-			-- if client.server_capabilities.documentSymbolProvider then
-			-- 	navic.attach(client, bufnr)
-			-- end
 		end
 
 		M.capabilities = vim.lsp.protocol.make_client_capabilities()
