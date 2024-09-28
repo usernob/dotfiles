@@ -1,0 +1,41 @@
+@import 'colors.css';
+
+:root {
+  --toolbar-bgcolor: var(--base00) !important;
+  --tab-selected-bgcolor: var(--base03) !important;
+  /* --tab-selected-textcolor: var(--base05) !important; */
+}
+
+#tabbrowser-arrowscrollbox {
+  padding-left: 2px !important;
+}
+
+.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
+  margin: 0 !important;
+  height: 3px !important;
+  border-radius: 0px !important;
+}
+
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon, .tab-background {
+  overflow: hidden !important;
+}
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon, .tabbrowser-tab:is([visuallyselected], [multiselected]) {
+  font-weight: 500 !important;
+}
+
+#navigator-toolbox {
+  border: none !important;
+}
+
+#nav-bar {
+  border: none !important;
+}
+
+#TabsToolbar, #titlebar {
+  background-color: var(--toolbar-bgcolor) !important;
+}
+
+#urlbar-input {
+	text-align: center !important;
+	padding: 0 28px 0 0 !important;
+}
