@@ -19,3 +19,8 @@ rewrite = true
 file = "~/.cache/flavours/colors.lua"
 template = "lua"
 rewrite = true
+
+[[items]]
+file = "~/.cache/flavours/colors-fuzzel.ini"
+template = "fuzzel"
+rewrite = true
