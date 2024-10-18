@@ -2,7 +2,8 @@
 -- extends defaults nvchd cmp config to support cmp-cmdline
 --
 return {
-	"hrsh7th/nvim-cmp",
+  "iguanacucumber/magazine.nvim",
+  name = "nvim-cmp", -- Otherwise highlighting gets messed up
 	event = "VeryLazy",
 	dependencies = {
 		{

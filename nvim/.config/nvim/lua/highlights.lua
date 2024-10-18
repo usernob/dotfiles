@@ -70,6 +70,7 @@ local M = {
 	["@lsp.typemod.variable.readonly"] = { link = "Constant" },
 	["@lsp.typemod.parameter.readonly"] = { link = "Constant" },
 	["@lsp.type.namespace"] = { link = "Constant" },
+	["@tag.html"] = { link = "Constant" },
 
 	DiagnosticError = { fg = base16.base08 },
 	DiagnosticWarn = { fg = base16.base0A },

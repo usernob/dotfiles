@@ -18,6 +18,7 @@ return {
 				formatting.prettier,
 				formatting.clang_format,
 				formatting.cmake_format,
+				formatting.biome,
 
 				diagnostics.cmake_lint,
 			}

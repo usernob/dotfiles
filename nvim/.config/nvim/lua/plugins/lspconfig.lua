@@ -10,15 +10,21 @@ return {
 
 		--- @type table<string, lspconfig.Config>
 		local servers = {
-			ts_ls = {
-				filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-				---@diagnostic disable-next-line: assign-type-mismatch
-				root_dir = lspconfig.util.root_pattern(
-					"package.json",
-					"tsconfig.json",
-					"jsconfig.json",
-					"node_modules"
-				),
+			-- ts_ls = {
+			-- 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
+			-- 	---@diagnostic disable-next-line: assign-type-mismatch
+			-- 	root_dir = lspconfig.util.root_pattern(
+			-- 		"package.json",
+			-- 		"tsconfig.json",
+			-- 		"jsconfig.json",
+			-- 		"node_modules"
+			-- 	),
+			-- },
+			denols = {
+				root_dir = lspconfig.util.root_pattern("deno.json", "deno.lock"),
+			},
+			biome = {
+				root_dir = lspconfig.util.root_pattern("package.json"),
 			},
 			rust_analyzer = {
 				filetypes = { "rust" },
