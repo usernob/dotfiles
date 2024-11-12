@@ -2,9 +2,10 @@
 -- extends defaults nvchd cmp config to support cmp-cmdline
 --
 return {
-  "iguanacucumber/magazine.nvim",
-  name = "nvim-cmp", -- Otherwise highlighting gets messed up
+	"iguanacucumber/magazine.nvim",
+	name = "nvim-cmp", -- Otherwise highlighting gets messed up
 	event = "VeryLazy",
+	cond = true,
 	dependencies = {
 		{
 			-- snippet plugin
@@ -57,11 +58,11 @@ return {
 		-- cmp sources plugins
 		{
 			"saadparwaiz1/cmp_luasnip",
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
+			{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
+			{ "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
+			{ "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+			{ "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
 		},
 	},
 	config = function()
