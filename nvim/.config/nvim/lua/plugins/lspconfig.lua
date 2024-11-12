@@ -63,6 +63,7 @@ return {
 					offsetEncoding = { "utf-16" },
 				},
 			},
+			tailwindcss = {},
 		}
 
 		for _, server in ipairs(installed_servers) do
@@ -102,6 +103,9 @@ return {
 				},
 				severity_sort = true,
 			})
+
+			vim.keymap.set("n", "gra", vim.lsp.buf.code_action, { desc = "Lsp code action" })
+			vim.keymap.set("n", "grr", vim.lsp.buf.rename, { desc = "Lsp rename" })
 		end
 
 		M.capabilities = vim.lsp.protocol.make_client_capabilities()

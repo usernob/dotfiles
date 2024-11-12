@@ -19,6 +19,7 @@ return {
 				formatting.clang_format,
 				formatting.cmake_format,
 				formatting.biome,
+				formatting.nixfmt,
 
 				diagnostics.cmake_lint,
 			}

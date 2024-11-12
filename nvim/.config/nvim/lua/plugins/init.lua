@@ -1,6 +1,6 @@
 return {
 	--This is a list of plugins that do not require additional configuration
-	{ "wakatime/vim-wakatime", lazy = false },
+	{ "wakatime/vim-wakatime", lazy = false, cond = false },
 	{
 		"kylechui/nvim-surround",
 		version = "*",
@@ -131,7 +131,7 @@ return {
 		event = "VeryLazy",
 		opts = {
 			tint = -50,
-			saturate = 0.8
+			saturate = 0.8,
 		},
 	},
 }
