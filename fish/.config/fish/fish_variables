@@ -11,6 +11,7 @@ SETUVAR fifc_bat_opts:\x2d\x2dstyle\x3dnumbers\x1e\x2d\x2dtheme\x3dbase16
 SETUVAR --export fifc_editor:nvim
 SETUVAR fifc_exa_opts:\x2d\x2dicons\x1ealways
 SETUVAR fifc_fd_opts:\x1d
+SETUVAR fifc_keybinding:\x09
 SETUVAR fifc_open_keybinding:ctrl\x2do
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
