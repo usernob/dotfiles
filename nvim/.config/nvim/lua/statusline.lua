@@ -19,6 +19,8 @@ end
 J.filepath = function()
 	local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
 
+	local max_len = 50
+
 	local fullpath = vim.api.nvim_buf_get_name(J.bufnr())
 	if fullpath:sub(1, 6) == "oil://" then
 		return "oil.nvim"
@@ -27,6 +29,11 @@ J.filepath = function()
 	local filename = vim.fn.fnamemodify(fullpath, ":t")
 	if devicons_ok then
 		local ext = vim.fn.fnamemodify(fullpath, ":e")
+
+		if fullpath:sub(1, 6) == "man://" then
+			ext = "man"
+		end
+
 		local icon, color = devicons.get_icon_color(filename, ext, { strict = true, default = true })
 
 		local highlight_group = "St_DevIcon" .. ext
@@ -44,7 +51,12 @@ J.filepath = function()
 	local prefix_path = ""
 	if path ~= "." then
 		local splitted_path = vim.split(path, "/")
+		local max_len_perpath = math.floor(max_len / (#splitted_path + 1))
+
 		for key, value in pairs(splitted_path) do
+			if #value > max_len_perpath + 3 then
+				value = value:sub(1, max_len_perpath - 3) .. "..."
+			end
 			splitted_path[key] = highlights("St_Normal2", value)
 		end
 		prefix_path = table.concat(splitted_path, " / ") .. " / "
