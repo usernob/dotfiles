@@ -111,16 +111,6 @@ return {
 	},
 
 	{
-		"Everblush/nvim",
-		name = "everblush",
-		lazy = false,
-		cond = false,
-		init = function()
-			vim.cmd("colorscheme everblush")
-		end,
-	},
-
-	{
 		"linrongbin16/lsp-progress.nvim",
 		event = "LspAttach",
 		opts = {},

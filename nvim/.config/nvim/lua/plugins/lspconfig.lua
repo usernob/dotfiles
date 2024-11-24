@@ -6,20 +6,8 @@ return {
 
 		local lspconfig = require("lspconfig")
 
-		local installed_servers = require("mason-lspconfig").get_installed_servers()
-
 		--- @type table<string, lspconfig.Config>
 		local servers = {
-			-- ts_ls = {
-			-- 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
-			-- 	---@diagnostic disable-next-line: assign-type-mismatch
-			-- 	root_dir = lspconfig.util.root_pattern(
-			-- 		"package.json",
-			-- 		"tsconfig.json",
-			-- 		"jsconfig.json",
-			-- 		"node_modules"
-			-- 	),
-			-- },
 			denols = {
 				root_dir = lspconfig.util.root_pattern("deno.json", "deno.lock"),
 			},
@@ -65,13 +53,6 @@ return {
 			},
 			tailwindcss = {},
 		}
-
-		for _, server in ipairs(installed_servers) do
-			if server == "tsserver" then
-				server = "ts_ls"
-			end
-			servers[server] = servers[server] or {}
-		end
 
 		--- @param client vim.lsp.Client
 		--- @param bufnr integer
