@@ -6,13 +6,15 @@ template = "css"
 rewrite = true
 
 [[items]]
-file = "~/.cache/flavours/colors-kitty.conf"
-template = "kitty"
+file = "~/.cache/flavours/colors-gtk.css"
+template = "css"
+subtemplate = "gtk-css"
 rewrite = true
 
 [[items]]
-file = "~/.cache/flavours/colors-waybar.css"
-template = "waybar"
+file = "~/.cache/flavours/colors-kitty.conf"
+template = "conf"
+subtemplate = "kitty"
 rewrite = true
 
 [[items]]
@@ -22,5 +24,6 @@ rewrite = true
 
 [[items]]
 file = "~/.cache/flavours/colors-fuzzel.ini"
-template = "fuzzel"
+template = "ini"
+subtemplate = "fuzzel"
 rewrite = true
