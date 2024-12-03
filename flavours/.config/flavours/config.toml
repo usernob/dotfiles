@@ -18,6 +18,12 @@ subtemplate = "kitty"
 rewrite = true
 
 [[items]]
+file = "~/.cache/flavours/colors-hypr.conf"
+template = "conf"
+subtemplate = "hypr"
+rewrite = true
+
+[[items]]
 file = "~/.cache/flavours/colors.lua"
 template = "lua"
 rewrite = true
