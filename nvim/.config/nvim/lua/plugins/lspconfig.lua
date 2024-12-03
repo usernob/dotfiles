@@ -121,26 +121,43 @@ return {
 			-- end
 		end
 
+		M.lsp_binary_exists = function(server_config)
+			local valid_config = server_config.config_def
+				and server_config.config_def.default_config
+				and type(server_config.config_def.default_config.cmd) == "table"
+				and #server_config.config_def.default_config.cmd >= 1
+
+			if not valid_config then
+				return false
+			end
+
+			local binary = server_config.document_config.default_config.cmd[1]
+
+			return vim.fn.executable(binary) == 1
+		end
+
 		for name, opts in pairs(servers) do
-			opts.on_init = M.on_init
+			if lspconfig[name] and lspconfig[name].setup and M.lsp_binary_exists(lspconfig[name]) then
+				opts.on_init = M.on_init
 
-			opts.on_attach = M.on_attach
+				opts.on_attach = M.on_attach
 
-			opts.handlers = {
-				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-					border = "rounded",
-					max_width = 100,
-					max_height = 30,
-				}),
-				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-					border = "rounded",
-				}),
-			}
-			-- opts.capabilities = M.capabilities
-			opts.capabilities = opts.capabilities or {}
-			opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities, M.capabilities)
+				opts.handlers = {
+					["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+						border = "rounded",
+						max_width = 100,
+						max_height = 30,
+					}),
+					["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+						border = "rounded",
+					}),
+				}
+				-- opts.capabilities = M.capabilities
+				opts.capabilities = opts.capabilities or {}
+				opts.capabilities = vim.tbl_deep_extend("keep", opts.capabilities, M.capabilities)
 
-			require("lspconfig")[name].setup(opts)
+				lspconfig[name].setup(opts)
+			end
 		end
 	end,
 }
