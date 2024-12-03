@@ -10,7 +10,7 @@
 
 #waybar {
   background: transparent;
-  color: @foreground;
+  color: @base05;
 }
 
 #workspaces,
@@ -31,7 +31,7 @@
 #tray,
 #privacy,
 #custom-power {
-  background-color: @background;
+  background-color: @base00;
   margin-top: 5px;
   padding-top: 0.47rem;
   padding-bottom: 0.47rem;
@@ -70,47 +70,47 @@
 }
 
 #workspaces button {
-  color: @color7;
+  color: @base05;
   border-radius: 5px;
   padding-left: 0rem;
   padding-right: 0.2rem;
 }
 
 #workspaces button:nth-child(1) {
-  color: @color2;
+  color: @base0B;
 }
 #workspaces button:nth-child(2) {
-  color: @color3;
+  color: @base0A;
 }
 #workspaces button:nth-child(3) {
-  color: @color4;
+  color: @base0D;
 }
 #workspaces button:nth-child(4) {
-  color: @color5;
+  color: @base0E;
 }
 #workspaces button:nth-child(5) {
-  color: @color6;
+  color: @base0C;
 }
 
 #workspaces button.focused {
-  color: @color1;
+  color: @base08;
 }
 
 #workspaces button.urgent {
-  color: @background;
-  background-color: @color1;
+  color: @base00;
+  background-color: @base08;
 }
 
 #workspaces button.active {
-  color: @color1;
+  color: @base08;
 }
 
 #workspaces button:hover {
-  color: @color7;
+  color: @base05;
 }
 
 window#waybar #window {
-  color: @foreground;
+  color: @base05;
   border-radius: 10px;
 }
 
@@ -127,7 +127,7 @@ window#waybar.empty #window {
   padding-left: 1rem;
   padding-right: 1rem;
   margin-left: 5px;
-  color: @color1;
+  color: @base08;
 }
 
 #mode {
@@ -136,7 +136,7 @@ window#waybar.empty #window {
 
 #clock {
   font-size: 16px;
-  color: @color4;
+  color: @base0D;
   padding-top: 0rem;
   padding-bottom: 0rem;
   border-radius: 10px;
@@ -145,21 +145,21 @@ window#waybar.empty #window {
 }
 
 #battery {
-  color: @color2;
+  color: @base0B;
   border-radius: 0px 10px 10px 0px;
   padding-right: 1rem;
 }
 
 #battery.charging {
-  color: @color2;
+  color: @base0B;
 }
 
 #battery.warning:not(.charging) {
-  color: @color1;
+  color: @base08;
 }
 
 #backlight {
-  color: @color3;
+  color: @base0A;
 }
 
 /* #backlight, */
@@ -168,54 +168,54 @@ window#waybar.empty #window {
 /* } */
 
 #cpu {
-  color: @color3;
+  color: @base0A;
 }
 
 #memory {
-  color: @color5;
+  color: @base0E;
   border-radius: 0px 10px 10px 0px;
   padding-right: 1rem;
 }
 
 #temperature {
-  color: @color4;
+  color: @base0D;
   border-radius: 10px 0px 0px 10px;
   padding-left: 1rem;
   margin-left: 5px;
 }
 
 #pulseaudio {
-  color: @color6;
+  color: @base0C;
 }
 
 #network {
-  color: @color2;
+  color: @base0B;
 }
 
 #network.disconnected {
-  color: @color1;
+  color: @base08;
 }
 
 #mpris {
   margin-right: 5px;
-  color: @color2;
+  color: @base0B;
   border-radius: 10px;
 }
 
 #cava {
   margin-right: 5px;
   border-radius: 10px;
-  color: @foreground;
+  color: @base05;
 }
 
 #custom-lock {
-  color: @color4;
+  color: @base0D;
 }
 
 #custom-power {
   margin-right: 10px;
   border-radius: 10px;
-  color: @color1;
+  color: @base08;
 }
 
 #tray, #privacy {
@@ -226,5 +226,5 @@ window#waybar.empty #window {
 #submap {
   margin-right: 5px;
   border-radius: 10px;
-  color: @foreground;
+  color: @base05;
 }
