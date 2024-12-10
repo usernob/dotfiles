@@ -6,7 +6,22 @@ return {
 
 		local lspconfig = require("lspconfig")
 
-		--- @type table<string, lspconfig.Config>
+		--- @class ServerConfig
+		--- @field enabled? boolean
+		--- @field single_file_support? boolean
+		--- @field silent? boolean
+		--- @field filetypes? string[]
+		--- @field filetype? string
+		--- @field root_dir? string|fun(filename: string, bufnr: number)
+		--- @field cmd? string[]|fun(dispatchers: vim.lsp.rpc.Dispatchers): vim.lsp.rpc.PublicClient
+		--- @field capabilities? lsp.ClientCapabilities
+		--- @field settings? table
+		--- @field attach_cb? fun(client: vim.lsp.Client, bufnr: integer)
+		--- @field init_cb? fun(client: vim.lsp.Client, initialize_result: lsp.InitializeResult)
+
+		--- @class configs: ServerConfig, lspconfig.Config
+
+		--- @type table<string, ServerConfig>
 		local servers = {
 			denols = {
 				root_dir = lspconfig.util.root_pattern("deno.json", "deno.lock"),
@@ -50,8 +65,23 @@ return {
 				capabilities = {
 					offsetEncoding = { "utf-16" },
 				},
+				attach_cb = function(client, bufnr)
+					vim.keymap.set(
+						"n",
+						"<leader>sh",
+						"<cmd>ClangdSwitchSourceHeader<cr>",
+						{ desc = "LSP(clangd) switch between source/header" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>si",
+						"<cmd>ClangdShowSymbolInfo<cr>",
+						{ desc = "LSP(clangd) show symbol info" }
+					)
+				end,
 			},
 			tailwindcss = {},
+			svelte = {},
 		}
 
 		--- @param client vim.lsp.Client
@@ -87,6 +117,7 @@ return {
 
 			vim.keymap.set("n", "gra", vim.lsp.buf.code_action, { desc = "Lsp code action" })
 			vim.keymap.set("n", "grr", vim.lsp.buf.rename, { desc = "Lsp rename" })
+			vim.keymap.set("n", "grd", vim.diagnostic.open_float, { desc = "Diagnostic open float" })
 		end
 
 		M.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -138,11 +169,24 @@ return {
 
 		for name, opts in pairs(servers) do
 			if lspconfig[name] and lspconfig[name].setup and M.lsp_binary_exists(lspconfig[name]) then
-				opts.on_init = M.on_init
+				--- @type configs
+				local conf = vim.tbl_deep_extend("force", {}, opts)
 
-				opts.on_attach = M.on_attach
+				conf.on_init = function(client, initialize_result)
+					M.on_init(client, initialize_result)
+					if opts.init_cb then
+						opts.init_cb(client, initialize_result)
+					end
+				end
 
-				opts.handlers = {
+				conf.on_attach = function(client, bufnr)
+					M.on_attach(client, bufnr)
+					if opts.attach_cb then
+						opts.attach_cb(client, bufnr)
+					end
+				end
+
+				conf.handlers = {
 					["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 						border = "rounded",
 						max_width = 100,
@@ -153,10 +197,13 @@ return {
 					}),
 				}
 				-- opts.capabilities = M.capabilities
-				opts.capabilities = opts.capabilities or {}
-				opts.capabilities = vim.tbl_deep_extend("keep", opts.capabilities, M.capabilities)
+				if opts.capabilities then
+					conf.capabilities = vim.tbl_deep_extend("keep", opts.capabilities, M.capabilities)
+				else
+					conf.capabilities = M.capabilities
+				end
 
-				lspconfig[name].setup(opts)
+				lspconfig[name].setup(conf)
 			end
 		end
 	end,
