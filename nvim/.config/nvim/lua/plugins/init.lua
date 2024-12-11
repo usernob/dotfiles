@@ -51,26 +51,6 @@ return {
 			},
 		},
 	},
-	{
-		"stevearc/oil.nvim",
-		event = "VeryLazy",
-		opts = {
-			default_file_explorrer = true,
-			win_options = {
-				signcolumn = "yes",
-				foldcolumn = "1",
-			},
-		},
-		-- Optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-		keys = {
-			{
-				"-",
-				"<CMD>Oil<CR>",
-				desc = "Open parent directory",
-			},
-		},
-	},
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
