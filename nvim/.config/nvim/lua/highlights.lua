@@ -7,7 +7,7 @@ local M = {
 	NormalFloat = { bg = base16.base00 },
 	Pmenu = { bg = base16.base01 },
 	PmenuSel = { bg = base16.base0D, fg = base16.base00, bold = true },
-	WinSeparator = { fg = base16.base02 },
+	WinSeparator = { fg = base16.base05 },
 	Directory = { fg = base16.base0D },
 	LineNr = { fg = base16.base03 },
 	CursorLineNr = { fg = base16.base05 },
@@ -27,7 +27,7 @@ local M = {
 
 	Delimiter = { fg = base16.base08 },
 	Removed = { fg = base16.base08 },
-	Constant = { fg = base16.base08 },
+	Constant = { fg = base16.base08, bold = true },
 
 	Number = { fg = base16.base09 },
 	Boolean = { fg = base16.base09 },
@@ -54,7 +54,7 @@ local M = {
 
 	["@variable"] = { link = "Identifier" },
 	["@Variable.builtin"] = { fg = base16.base09 },
-	["@variable.parameter"] = { fg = base16.base08 },
+	["@variable.parameter"] = { fg = base16.base08, italic = true },
 	["@variable.member"] = { fg = base16.base08 },
 
 	["@character.special"] = { fg = base16.base09 },
@@ -67,10 +67,16 @@ local M = {
 
 	["@type.builtin"] = { link = "Type" },
 
+	["@string.escape"] = { fg = base16.base0C },
+
 	["@lsp.typemod.variable.readonly"] = { link = "Constant" },
 	["@lsp.typemod.parameter.readonly"] = { link = "Constant" },
+	["@lsp.mod.defaultLibrary"] = { italic = true },
+	["@lsp.type.parameter"] = { link = "@variable.parameter" },
 	["@lsp.type.namespace"] = { link = "Constant" },
-	["@tag.html"] = { link = "Constant" },
+	["@tag"] = { link = "Constant" },
+	["@tag.attribute"] = { link = "@property" },
+	["@tag.delimiter"] = { link = "Delimiter" },
 
 	DiagnosticError = { fg = base16.base08 },
 	DiagnosticWarn = { fg = base16.base0A },
@@ -80,7 +86,7 @@ local M = {
 	["@comment.todo"] = { link = "DiagnosticHint" },
 
 	LspInlayHint = { link = "Comment" },
-	LspSignatureActiveParameter = { bg = base16.base0B },
+	LspSignatureActiveParameter = { bg = base16.base03 },
 
 	IblIndent = { fg = base16.base03 },
 	IblScope = { fg = base16.base04 },

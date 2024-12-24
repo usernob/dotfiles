@@ -8,13 +8,6 @@ return {
 		opts = {},
 	},
 	{
-		"m-demare/hlargs.nvim",
-		event = "BufReadPost",
-		opts = {
-			highlight = { link = "@variable.parameter" },
-		},
-	},
-	{
 		"karb94/neoscroll.nvim",
 		event = "VeryLazy",
 		opts = {
@@ -55,13 +48,11 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = "VeryLazy",
+		main = "ibl",
 		opts = {
 			indent = { char = "│" },
 			scope = { char = "│" },
 		},
-		config = function(_, opts)
-			require("ibl").setup(opts)
-		end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -104,4 +95,5 @@ return {
 			saturate = 0.8,
 		},
 	},
+	{ "b0o/schemastore.nvim" },
 }
