@@ -1,0 +1,13 @@
+@import "basetheme"
+
+inputbar {
+    children:                     [ "prompt", "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    str:                          ":";
+}
+
+entry {
+    placeholder:                  "Type Something";
+}

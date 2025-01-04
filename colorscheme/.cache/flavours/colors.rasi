@@ -1,0 +1,18 @@
+* {
+  base00: #0c0c0e;
+  base01: #151518;
+  base02: #28282e;
+  base03: #313139;
+  base04: #464652;
+  base05: #b3bac6;
+  base06: #b6bdca;
+  base07: #c8ccd4;
+  base08: #e06c75;
+  base09: #d19a66;
+  base0A: #e5c07b;
+  base0B: #98c379;
+  base0C: #56b6c2;
+  base0D: #61afef;
+  base0E: #c678dd;
+  base0F: #be5046;
+}

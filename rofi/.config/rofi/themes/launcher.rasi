@@ -1,0 +1,14 @@
+@import "basetheme"
+
+configuration {
+    display-drun:                   " Apps";
+    display-run:                    " Run";
+}
+
+inputbar {
+    children:                       [ "textbox-prompt-colon", "entry", "num-filtered-rows", "textbox-num-sep", "num-rows" ];
+}
+
+textbox-prompt-colon {
+    str:                            "  ";
+}
