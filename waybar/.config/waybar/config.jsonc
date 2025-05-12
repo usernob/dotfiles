@@ -1,18 +1,16 @@
 {
 	"layer": "top", // Waybar at top layer
 	"position": "top", // Waybar position (top|bottom|left|right)
+	"reload_style_on_change": true,
 	// "width": 1280, // Waybar width
 	// Choose the order of the modules
-	"modules-left": ["hyprland/workspaces", "hyprland/submap", "mpris"],
-	"modules-center": ["hyprland/window"],
+	"modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/window"],
+	"modules-center": ["mpris"],
 	"modules-right": [
 		"tray",
-		"temperature",
-		"cpu",
-		"memory",
-		"idle_inhibitor",
 		"network",
 		"pulseaudio",
+		"idle_inhibitor",
 		"backlight",
 		"battery",
 		"clock"
@@ -22,15 +20,14 @@
 		"disable-scroll": true,
 		"all-outputs": true,
 		"warp-on-scroll": false,
-		"format": " {icon} ",
-		"format-icons": {
-			"default": "󰊠",
-			"empty": "",
-			"active": "󰮯"
-		},
-		"persistent-workspaces": {
-			"*": 5
-		}
+		// "format": "{icon}",
+		// "format-icons": {
+		// 	"default": "",
+		// 	"active": ""
+		// },
+		// "persistent-workspaces": {
+		// 	"*": 2
+		// }
 	},
 
 	"hyprland/submap": {
@@ -105,7 +102,7 @@
 		"format-ethernet": "󰊗 {ipaddr}/{cidr}",
 		"format-disconnected": "󰤭",
 		"tooltip-format": "󰊗 {ifname} via {gwaddr}",
-		"tooltip-format-wifi": "  {essid} ({signalStrength}%)",
+		"tooltip-format-wifi": "  {essid} up {bandwidthUpBytes}, dw {bandwidthDownBytes}",
 		"tooltip-format-ethernet": " {ifname}",
 		"tooltip-format-disconnected": "Disconnected",
 		"max-length": 50,
@@ -115,8 +112,8 @@
 	"clock": {
 		"timezone": "Asia/Jakarta",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
-		"format": "<b>󰅐 {:%H:%M}</b>",
-		"format-alt": "<b>󰃭 {:%a, %b %d}</b>",
+		// "format": "<b>󰅐 {:%H:%M}</b>",
+		"format": "<b>󰅐 {:%a, %b %d %H:%M}</b>",
 		"calendar": {
 			"format": {
 				"today": "<span color='#ff0000'><b>{}</b></span>"
@@ -125,7 +122,7 @@
 	},
 
 	"backlight": {
-		"format": "{icon} {percent}",
+		"format": "{icon}",
 		"format-icons": ["󰽤", "", "", "", "", "", "", "", ""],
 		"tooltip-format": "{percent}%"
 	},
@@ -137,9 +134,10 @@
 		},
 		"format": "{icon} {capacity}",
 		"format-charging": " {capacity}",
-		"format-plugged": "  {capacity}",
+		"format-plugged": " {capacity}",
 		"format-alt": "{icon} {time}",
-		"format-icons": [" ", " ", " ", " ", " "]
+		"tooltip-format": "{timeTo} (h: {health}%)",
+		"format-icons": ["","","","","","","",""]
 	},
 
 	"pulseaudio": {
@@ -157,7 +155,7 @@
 	},
 
 	"hyprland/window": {
-		"format": "{initialTitle}  {title}",
+		"format": "{initialTitle}",
 		"max-length": 50,
 		"rewrite": {
 			"((kitty|fish|Alacritty|zsh).*)": "  $1"
