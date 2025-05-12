@@ -12,9 +12,9 @@ window {
     enabled:                         true;
     margin:                          0px;
     padding:                         0px;
-    border:                          0px solid;
+    border:                          3px solid;
     border-radius:                   10px;
-    border-color:                    @base0D;
+    border-color:                    @base04;
     cursor:                          "default";
     background-color:                @base00;
 }
@@ -24,7 +24,7 @@ mainbox {
     spacing:                         10px;
     margin:                          0px;
     padding:                         20px;
-    border:                          4px solid;
+    border:                          0px solid;
     border-radius:                   10px;
     border-color:                    @base05;
     background-color:                @base00;
@@ -129,8 +129,8 @@ element normal.urgent {
 }
 
 element selected.normal {
-    background-color:                @base0D;
-    text-color:                      @base00;
+    background-color:                @base03;
+    text-color:                      @base05;
 }
 
 element selected.urgent {
@@ -155,7 +155,7 @@ element-text {
 }
 
 mode-switcher {
-    enabled:                         true;
+    enabled:                         false;
     expand:                          false;
     spacing:                         10px;
     margin:                          0px;
