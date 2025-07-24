@@ -24,6 +24,3 @@ for _, value in pairs({ "<Up>", "<Right>", "<Down>", "<Left>" }) do
     map("i", value, "<Nop>", opts)
     map("v", value, "<Nop>", opts)
 end
-
-map("n", "<C-i>", "<CMD>Inspect<CR>", { desc = "Inspect token under cursor", noremap = true })
-map("i", "<C-i>", "<CMD>Inspect<CR>", { desc = "Inspect token under cursor", noremap = true })
