@@ -66,13 +66,13 @@ return {
                     vim.keymap.set(
                         "n",
                         "<leader>sh",
-                        "<cmd>ClangdSwitchSourceHeader<cr>",
+                        "<cmd>LspClangdSwitchSourceHeader<cr>",
                         { desc = "LSP(clangd) switch between source/header" }
                     )
                     vim.keymap.set(
                         "n",
                         "<leader>si",
-                        "<cmd>ClangdShowSymbolInfo<cr>",
+                        "<cmd>LspClangdShowSymbolInfo<cr>",
                         { desc = "LSP(clangd) show symbol info" }
                     )
                 end,
@@ -103,7 +103,15 @@ return {
             },
             taplo = {},
             zls = {},
-            cmake = {},
+            nixd = {},
+            glsl_analyzer = {},
+        }
+
+        local neo_cap = vim.lsp.protocol.make_client_capabilities()
+        neo_cap.textDocument.completion.completionItem.snippetSupport = true
+
+        servers.neocmake = {
+            capabilities = neo_cap,
         }
 
         local lsp_binary_exists = function(server_config)
@@ -120,6 +128,18 @@ return {
 
         for name, opts in pairs(servers) do
             if lsp_binary_exists(vim.lsp.config[name]) then
+                -- workaround to extend default on attach from lspconfig
+                local default_on_attach = vim.lsp.config[name].on_attach
+                local user_on_attach = opts.on_attach
+                opts.on_attach = function(client, bufnr)
+                    if default_on_attach then
+                        default_on_attach(client, bufnr)
+                    end
+                    if user_on_attach then
+                        user_on_attach(client, bufnr)
+                    end
+                end
+
                 vim.lsp.config(name, opts)
                 vim.lsp.enable(name)
             end

@@ -26,6 +26,7 @@ vim.diagnostic.config({
     },
     float = {
         source = true,
+        border = "rounded"
     },
     signs = {
         text = {
@@ -46,6 +47,9 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.HINT] = "DiagnosticLineHlHint",
             [vim.diagnostic.severity.WARN] = "DiagnosticLineHlWarn",
         },
+    },
+    jump = {
+        float = true
     },
     severity_sort = true,
 })
