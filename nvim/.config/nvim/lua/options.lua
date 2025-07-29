@@ -5,7 +5,6 @@ local g = vim.g
 
 g.codeium_no_map_tab = true
 g.codeium_bin = "/etc/profiles/per-user/usernob/bin/codeium_language_server" -- hardcoded for nixos only
-g.blink = true
 
 -- disable some default providers
 g.loaded_node_provider = 0

@@ -16,9 +16,6 @@ return {
     },
     event = { "InsertEnter", "CmdlineEnter" },
 
-    cond = function()
-        return vim.g.blink
-    end,
     -- use a release tag to download pre-built binaries
     version = "*",
     -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -56,7 +53,7 @@ return {
         completion = {
             list = {
                 selection = {
-                    preselect = true,
+                    preselect = false,
                     auto_insert = true,
                 },
             },
@@ -79,6 +76,12 @@ return {
                             text = function(ctx)
                                 return ctx.kind and "(" .. ctx.kind .. ")" or ""
                             end,
+                            highlight = "Comment",
+                        },
+                        label = {
+                            text = function(ctx)
+                                return ctx.label .. " " .. ctx.label_detail
+                            end,
                         },
                     },
                 },
@@ -87,7 +90,8 @@ return {
                 auto_show = true,
                 auto_show_delay_ms = 200,
                 window = {
-                    border = "single",
+                    border = "rounded",
+                    winhighlight = "Normal:BlinkCmpDoc,FloatBorder:FloatBorder,EndOfBuffer:BlinkCmpDoc",
                 },
             },
         },
@@ -95,8 +99,30 @@ return {
         signature = {
             enabled = true,
             window = {
-                border = "single",
+                border = "rounded",
                 show_documentation = true,
+                winhighlight = "Normal:BlinkCmpSignatureHelp,FloatBorder:FloatBorder",
+            },
+        },
+
+        cmdline = {
+            keymap = {
+                preset = "cmdline",
+                ["<Tab>"] = { "show", "select_next" },
+                ["<S-Tab>"] = { "show", "select_prev" },
+                ["<CR>"] = { "accept", "fallback" },
+                ["<C-e>"] = { "cancel", "fallback" },
+            },
+            completion = {
+                menu = {
+                    auto_show = true,
+                },
+                list = {
+                    selection = {
+                        preselect = false,
+                        auto_insert = false,
+                    },
+                },
             },
         },
         -- Default list of enabled providers defined so that you can extend it
