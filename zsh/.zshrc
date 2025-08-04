@@ -52,18 +52,13 @@ zpm load Aloxaf/fzf-tab
 
 zpm load zsh-users/zsh-autosuggestions
 zpm load zdharma-continuum/fast-syntax-highlighting
-zpm load joshskidmore/zsh-fzf-history-search
-zpm load zsh-users/zsh-history-substring-search
 zpm load zsh-users/zsh-completions
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey '^[OA' history-substring-search-up
-bindkey '^[OB' history-substring-search-down
 
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(dircolors -b)"
+eval "$(direnv hook zsh)"
+eval "$(atuin init zsh)"
 
 export FZF_DEFAULT_OPTS='
   --bind=alt-up:toggle+up,alt-down:toggle+down,tab:down,btab:up
