@@ -64,6 +64,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
 opt.wrap = false
+opt.scrolloff = 8
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
