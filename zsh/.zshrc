@@ -58,7 +58,7 @@ eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(dircolors -b)"
 eval "$(direnv hook zsh)"
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 export FZF_DEFAULT_OPTS='
   --bind=alt-up:toggle+up,alt-down:toggle+down,tab:down,btab:up
