@@ -1,0 +1,7 @@
+daemonize
+ignore-empty-password
+disable-caps-lock-text
+indicator-idle-visible
+indicator-radius=100
+ring-color=#3a2e2e
+color=#0e0e0e
