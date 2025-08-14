@@ -4,29 +4,34 @@ local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 
-local function guard_name()
-    local filename = vim.fn.expand("%") -- nama file tanpa ekstensi
-    local project = vim.fn.fnamemodify(filename, ":h") -- nama folder kerja
-    local t_raw = {}
-    if #project > 0 then
-        table.insert(t_raw, project)
-        table.insert(t_raw, "_")
+local function include_guard()
+    local full_path = vim.fn.expand("%")
+    local relative_path = vim.fn.fnamemodify(full_path, ":~:.:h")
+    local filename = vim.fn.fnamemodify(full_path, ":t")
+    local result_raw = ""
+    local prefix_path = ""
+
+    if relative_path ~= "." then
+        local splitted_path = vim.split(relative_path, "/")
+        prefix_path = table.concat(splitted_path, "_")
+        result_raw = prefix_path .. "_" .. filename
+    else
+        result_raw = filename
     end
-    table.insert(t_raw, vim.fn.fnamemodify(filename, ":t"))
-    local raw = table.concat(t_raw, "")
-    local sanitized = raw:gsub("[^%w]", "_")
+
+    local sanitized = result_raw:gsub("[^%w]", "_")
     return string.upper(sanitized)
 end
 
 return {
     s("guard", {
         t("#ifndef "),
-        f(guard_name, {}),
+        f(include_guard, {}),
         t({ "", "#define " }),
-        f(guard_name, {}),
-        t({ "", "", "" }), -- Tambahin spasi 1 baris
-        i(0), -- Ini tempat cursor akan jatuh (field 0 = akhir snippet)
+        f(include_guard, {}),
+        t({ "", "", "" }),
+        i(0),
         t({ "", "", "#endif // " }),
-        f(guard_name, {}),
+        f(include_guard, {}),
     }),
 }
