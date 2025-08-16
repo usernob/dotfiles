@@ -13,6 +13,7 @@ configuration {
         directories-first:        true;
         sorting-method:           "name";
     }
+    drun-show-actions:            true; 
 }
 
 @theme "launcher"
