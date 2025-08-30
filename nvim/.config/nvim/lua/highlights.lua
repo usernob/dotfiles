@@ -46,6 +46,7 @@ local M = {
     Normal = { fg = base16.base05, bg = base16.base00 },
     NormalNC = { fg = base16.base05, bg = base16.base00 },
     NormalFloat = { bg = base16.base00 },
+    FloatBorder = { fg = base16.base04 },
     Pmenu = { bg = base16.base01 },
     PmenuSel = { bg = base16.base0D, fg = base16.base00, bold = true },
     WinSeparator = { fg = base16.base05 },

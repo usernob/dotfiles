@@ -1,7 +1,7 @@
 return {
     defaults = { lazy = true },
     ui = {
-        backdrop = 100,
+        border = "rounded",
         icons = {
             ft = "",
             lazy = "󰂠 ",
