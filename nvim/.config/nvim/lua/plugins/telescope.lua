@@ -9,6 +9,7 @@ return {
             "nvim-telescope/telescope-ui-select.nvim",
         },
         cmd = "Telescope",
+        cond = false,
 
         config = function()
             local telescope = require("telescope")
@@ -73,6 +74,7 @@ return {
                     "^build/",
                     "^target/",
                     "^vendor/",
+                    "^external/",
                     "%.gz$",
                     "%.gif$",
                     "%.mp4$",
@@ -123,6 +125,8 @@ return {
             map("n", "<leader>fw", builtin.live_grep, { desc = "Telescope Live Grep" })
             map("n", "<leader>fb", builtin.buffers, { desc = "Telescope Buffers" })
             map("n", "<leader>fd", builtin.diagnostics, { desc = "Telescope Diagnostics" })
+            map("n", "<leader>gr", builtin.lsp_references, { desc = "Telescope Lsp Reference" })
+            map("n", "<leader>gd", builtin.lsp_definitions, { desc = "Telescope Lsp Definitions" })
         end,
     },
 
