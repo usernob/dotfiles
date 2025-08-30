@@ -17,7 +17,7 @@ return {
                 code_action.gitsigns,
 
                 formatting.stylua,
-                formatting.prettierd,
+                formatting.prettier,
                 formatting.clang_format,
                 formatting.cmake_format,
                 formatting.biome,
@@ -57,6 +57,12 @@ return {
                         end,
                     })
                 end, { desc = "format with null-ls" })
+
+                vim.keymap.set(mode, "<leader>fs", function()
+                    vim.lsp.buf.format({
+                        async = true,
+                    })
+                end, { desc = "format with lsp" })
             end
         end,
     },
