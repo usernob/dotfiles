@@ -1,7 +1,25 @@
-daemonize
 ignore-empty-password
 disable-caps-lock-text
-indicator-idle-visible
-indicator-radius=100
-ring-color=#3a2e2e
-color=#0e0e0e
+font=Geist
+# font-size=9
+
+daemonize
+screenshots
+effect-blur=7x5
+effect-vignette=0.5:0.5
+indicator
+indicator-radius=130
+indicator-thickness=15
+clock
+timestr=%0H:%M
+datestr=%a, %d %b
+ring-color=4C566A
+key-hl-color=A3BE8C
+line-color=2E3440
+separator-color=3B4252
+inside-color=3B4252
+bs-hl-color=A3BE8C
+layout-bg-color=3B4252
+layout-border-color=4C566A
+layout-text-color=D8DEE9
+text-color=D8DEE9
