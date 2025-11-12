@@ -52,12 +52,10 @@ source $zsh_plugins
 
 # load on background
 eval "$(starship init zsh)"
-() {
-  eval "$(zoxide init --cmd cd zsh)"
-  eval "$(dircolors -b)"
-  eval "$(direnv hook zsh)"
-  eval "$(atuin init zsh --disable-up-arrow)"
-} &!
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(dircolors -b)"
+eval "$(direnv hook zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -A --color=always --icons --group-directories-first $realpath'
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
