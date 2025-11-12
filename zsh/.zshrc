@@ -57,6 +57,9 @@ eval "$(dircolors -b)"
 eval "$(direnv hook zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -A --color=always --icons --group-directories-first $realpath'
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
