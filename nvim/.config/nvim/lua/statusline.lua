@@ -22,9 +22,9 @@ J.filepath = function()
     local max_len = 50
 
     local fullpath = vim.api.nvim_buf_get_name(J.bufnr())
-    if fullpath:sub(1, 6) == "oil://" then
-        return "oil.nvim"
-    end
+    -- if fullpath:sub(1, 6) == "oil://" then
+    --     return "oil.nvim"
+    -- end
 
     local filename = vim.fn.fnamemodify(fullpath, ":t")
     if devicons_ok then
@@ -38,14 +38,10 @@ J.filepath = function()
             devicons.get_icon_color(filename, ext, { strict = true, default = true })
 
         local highlight_group = "St_DevIcon" .. ext
-        vim.api.nvim_set_hl(
-            0,
-            highlight_group,
-            {
-                fg = color,
-                bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("StatusLine")), "bg"),
-            }
-        )
+        vim.api.nvim_set_hl(0, highlight_group, {
+            fg = color,
+            bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("StatusLine")), "bg"),
+        })
 
         filename = highlights(highlight_group, icon) .. " " .. filename
     end
@@ -86,19 +82,18 @@ J.diagnostics = function()
     local diagnostic_count = vim.diagnostic.count(J.bufnr())
     local err = diagnostic_count[vim.diagnostic.severity.ERROR] --- @type integer
     local warn = diagnostic_count[vim.diagnostic.severity.WARN] --- @type integer
-    local hints = diagnostic_count[vim.diagnostic.severity.HINT] --- @type integer
+    local hint = diagnostic_count[vim.diagnostic.severity.HINT] --- @type integer
     local info = diagnostic_count[vim.diagnostic.severity.INFO] --- @type integer
 
     local str_err = (err and err > 0) and highlights("DiagnosticError", " " .. err .. " ") or ""
     local str_warn = (warn and warn > 0) and highlights("DiagnosticWarn", " " .. warn .. " ")
         or ""
-    local str_hints = (hints and hints > 0)
-            and highlights("DiagnosticHints", "󰛩 " .. hints .. " ")
+    local str_hint = (hint and hint > 0) and highlights("DiagnosticHints", "󰛩 " .. hint .. " ")
         or ""
     local str_info = (info and info > 0) and highlights("DiagnosticInfo", "󰋼 " .. info .. " ")
         or ""
 
-    return str_err .. str_warn .. str_hints .. str_info
+    return str_err .. str_warn .. str_hint .. str_info
 end
 
 J.filetype = function()
@@ -113,26 +108,15 @@ J.ruler = function()
     return highlights("St_Normal2", "Ln ") .. "%l" .. highlights("St_Normal2", " Col ") .. "%c"
 end
 
-J.load_time = function()
-    if vim.b[J.bufnr()].load_time then
-        return string.format("%.2fms", vim.b[J.bufnr()].load_time)
-    end
-    return ""
-end
-
 return function()
     return table.concat({
-        " ",
-        J.bufnr(),
         J.filepath(),
         J.file_status(),
         J.diagnostics(),
         "%=",
         require("lsp-progress").progress(),
-        J.load_time(),
         J.filetype(),
         J.line_counter(),
         J.ruler(),
-        " ",
     }, " ")
 end

@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 require("options")
 require("mappings")
 require("autocmd")
-require("highlights")
 require("filetype")
 require("lsp")
 vim.o.statusline = "%!v:lua.require('statusline')()"

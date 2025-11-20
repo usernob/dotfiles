@@ -6,19 +6,18 @@
   font-weight: 600;
   min-width: 0;
   min-height: 0;
-  color: @base05;
+  color: @on_surface;
 }
 
 #waybar {
-  background-color: @base00;
+  background-color: @surface;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  border-bottom: 0.4px solid @base02;
 }
 
 tooltip {
-  background-color: @base00;
+  background-color: @surface;
   font-weight: 400;
-  border: 2px solid @base04;
+  border: 2px solid @outline;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
 }
@@ -59,15 +58,15 @@ tooltip {
 
 #workspaces button.active {
   font-weight: 800;
-  background-color: @base08;
+  background-color: @on_surface;
 }
 
 #workspaces button.active label {
-  color: @base00;
+  color: @surface;
 }
 
 #workspaces button:hover:not(.active) {
-  background-color: @base02;
+  background-color: @secondary_container;
 }
 
 window#waybar.empty #window {
@@ -78,40 +77,39 @@ window#waybar.empty #window {
 }
 
 #cpu.warning {
-  color: @base0A;
+  color: @error;
 }
 
 #cpu.critical {
-  color: @base08;
+  color: @on_error_container;
 }
 
 #memory.warning {
-  color: @base0A;
+  color: @error;
 }
 
 #memory.critical {
-  color: @base08;
+  color: @on_error_container;
 }
 
 #temperature.critical {
-  color: @base08;
+  color: @error;
 }
 
 #battery.charging {
-  color: @base0B;
+  color: @on_surface;
 }
 
 #battery.warning:not(.charging) {
-  color: @base0A;
+  color: @on_error_container;
 }
 
 #battery.critical:not(.charging) {
-  color: @base08;
+  color: @error;
 }
 
 #clock {
   font-size: 16px;
-  color: @base05;
   margin-right: 12px;
   margin-left: 5px;
 }

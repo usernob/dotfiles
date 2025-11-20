@@ -49,7 +49,9 @@ vim.diagnostic.config({
         },
     },
     jump = {
-        float = true
+        on_jump = function (_, _)
+            vim.diagnostic.open_float()
+        end
     },
     severity_sort = true,
 })

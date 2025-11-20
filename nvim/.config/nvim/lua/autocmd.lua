@@ -34,23 +34,16 @@ autocmd("User", {
     end,
 })
 
-local file_load_time = augroup("file_load_time", { clear = true })
-autocmd("BufReadPre", {
-    group = file_load_time,
-    pattern = "*",
-    callback = function(arg)
-        vim.b[arg.buf].load_time = vim.uv.hrtime()
-    end,
-})
+-- Main entrypoint on matugen reloads
+local function auxiliary_function()
+    -- Load the matugen style file to get all the new colors
+    require("highlights").source_matugen()
+    -- Any other options you wish to set upon matugen reloads can also go here!
+    vim.api.nvim_set_hl(0, "Comment", { italic = true })
+end
 
-autocmd("BufRead", {
-    group = file_load_time,
-    pattern = "*",
-    callback = function(arg)
-        if not vim.b[arg.buf].load_time then
-            return
-        end
-
-        vim.b[arg.buf].load_time = (vim.uv.hrtime() - vim.b[arg.buf].load_time) / 1e6
-    end,
+-- Register an autocmd to listen for matugen updates
+vim.api.nvim_create_autocmd("Signal", {
+    pattern = "SIGUSR1",
+    callback = auxiliary_function,
 })

@@ -1,0 +1,57 @@
+[config]
+caching = true
+
+[config.wallpaper]
+set = true
+command = "swaybg"
+argument = ["-m", "fill", "-i"]
+# TODO: persistent wallpaper
+
+[templates.kitty]
+input_path = './templates/kitty-colors.conf'
+output_path = '~/.config/kitty/themes/matugen.conf'
+post_hook = "kitty +kitten themes --reload-in=all matugen"
+
+[templates.waybar]
+input_path = './templates/colors.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'systemctl --user reload waybar.service'
+
+[templates.mako]
+input_path = './templates/mako'
+output_path = '~/.config/mako/mako-colors'
+post_hook = 'makoctl reload'
+
+[templates.neovim]
+input_path = './templates/base16-colors.lua'
+output_path = '~/.config/nvim/lua/colors.lua'
+post_hook = 'pkill -SIGUSR1 nvim'
+
+[templates.qt5ct]
+input_path = './templates/qtct-colors.conf'
+output_path = '~/.config/qt5ct/colors/matugen.conf'
+
+[templates.color-scheme]
+input_path = './templates/Matugen.colors'
+output_path = '~/.local/share/color-schemes/Matugen.colors'
+
+[templates.gtk3]
+input_path = './templates/gtk-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark'
+
+[templates.gtk4]
+input_path = './templates/gtk-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+# # Only hex values
+# # https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e
+# # Blend is set to true by default. 
+# [config.custom_colors]
+# red  = "#e06c75"
+# orange  = "#d19a66"
+# yellow  = "#e5c07b"
+# green  = "#98c379"
+# cyan  = "#56b6c2"
+# blue  = "#61afef"
+# magenta  = "#c678dd"

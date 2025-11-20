@@ -15,7 +15,7 @@ return {
 
         --- @type table<string, ServerConfig>
         local servers = {
-            denols = {},
+            -- denols = {},
             biome = {},
             rust_analyzer = {},
             lua_ls = {
@@ -49,19 +49,19 @@ return {
                 capabilities = {
                     offsetEncoding = { "utf-16" },
                 },
-                cmd = {
-                    -- see clangd --help-hidden
-                    "clangd",
-                    "--background-index",
-                    -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
-                    -- to add more checks, create .clang-tidy file in the root directory
-                    -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
-                    "--clang-tidy",
-                    "--completion-style=detailed",
-                    "--cross-file-rename",
-                    "--header-insertion=iwyu",
-                    "--experimental-modules-support",
-                },
+                -- cmd = {
+                --     -- see clangd --help-hidden
+                --     "clangd",
+                --     "--background-index",
+                --     -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
+                --     -- to add more checks, create .clang-tidy file in the root directory
+                --     -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
+                --     "--clang-tidy",
+                --     "--completion-style=detailed",
+                --     "--cross-file-rename",
+                --     "--header-insertion=iwyu",
+                --     "--experimental-modules-support",
+                -- },
                 on_attach = function(_, _)
                     vim.keymap.set(
                         "n",
@@ -104,7 +104,45 @@ return {
             taplo = {},
             zls = {},
             nixd = {},
-            glsl_analyzer = {},
+            -- glsl_analyzer = {},
+            html = {},
+            cssls = {},
+            eslint = {},
+            emmet_language_server = {
+                filetypes = {"php", "html", "blade"}
+            },
+            ts_ls = {},
+            -- phpactor = {},
+            intelephense = {},
+            tinymist = {
+                settings = {
+                    lint = {
+                        enable = true,
+                        when = "onSave",
+                    },
+                    formatterMode = "typstyle",
+                    exportPdf = "onSave",
+
+                    outputPath = "$root/target/$dir/$name",
+                },
+            },
+            pyright = {
+                settings = {
+                    pyright = {
+                        disableOrganizeImports = true,
+                    },
+                    python = {
+                        analysis = {
+                            ignore = { "*" },
+                        },
+                    },
+                },
+            },
+            ruff = {
+                on_attach = function(client, _)
+                    client.server_capabilities.hoverProvider = false
+                end,
+            },
         }
 
         local neo_cap = vim.lsp.protocol.make_client_capabilities()

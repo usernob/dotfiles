@@ -5,17 +5,16 @@ return {
     -- or if using mini.icons/mini.nvim
     -- dependencies = { "echasnovski/mini.icons" },
     event = "VeryLazy",
-    opts = {
-        fzf_colors = false,
-        lsp = {
-            symbols = {
-                symbol_icons = require("kind"),
-            },
-        },
-    },
-    config = function(_, opts)
+    config = function(_, _)
         local fzf = require("fzf-lua")
-
+        local opts = {
+            fzf_colors = true,
+            lsp = {
+                symbols = {
+                    symbol_icons = require("kind"),
+                },
+            },
+        }
         fzf.setup(opts)
         fzf.register_ui_select()
 

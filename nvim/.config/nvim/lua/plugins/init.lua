@@ -1,6 +1,6 @@
 return {
     --This is a list of plugins that do not require additional configuration
-    { "wakatime/vim-wakatime", event = "VeryLazy" },
+    { "wakatime/vim-wakatime", cond = false, event = "VeryLazy" },
     {
         "kylechui/nvim-surround",
         version = "*",
@@ -13,8 +13,8 @@ return {
         event = "VeryLazy",
         main = "ibl",
         opts = {
-            indent = { char = "│" },
-            scope = { char = "│" },
+            indent = { char = "│", highlight = "Comment" },
+            scope = { char = "│", enabled = false },
         },
     },
 
@@ -53,5 +53,6 @@ return {
         opts = {
             enchanced_diff_hl = true,
         },
+        cmd = "DiffviewOpen",
     },
 }
