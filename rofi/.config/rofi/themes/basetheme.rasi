@@ -12,9 +12,9 @@ window {
     enabled:                         true;
     margin:                          0px;
     padding:                         0px;
-    border:                          2px solid;
-    border-radius:                   8px;
-    border-color:                    @base04;
+    border:                          1px solid;
+    border-radius:                   13px;
+    border-color:                    @base02;
     cursor:                          "default";
     background-color:                @base00;
 }

@@ -13,7 +13,8 @@ configuration {
         directories-first:        true;
         sorting-method:           "name";
     }
-    drun-show-actions:            true; 
+    case-sensitive:               false;
+    drun-show-actions:            false; 
 }
 
 @theme "launcher"
