@@ -3,9 +3,8 @@ caching = true
 
 [config.wallpaper]
 set = true
-command = "swaybg"
-argument = ["-m", "fill", "-i"]
-# TODO: persistent wallpaper
+command = "/home/usernob/.config/matugen/change_wallpaper.sh"
+post_hook = "systemctl --user restart swaybg.service"
 
 [templates.kitty]
 input_path = './templates/kitty-colors.conf'
