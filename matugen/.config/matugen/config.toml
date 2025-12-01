@@ -21,6 +21,23 @@ input_path = './templates/mako'
 output_path = '~/.config/mako/mako-colors'
 post_hook = 'makoctl reload'
 
+[templates.btop]
+input_path = './templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+
+[templates.zathura]
+input_path = './templates/zathura-colors'
+output_path = '~/.config/zathura/zathurarc'
+
+[templates.yazi]
+input_path = './templates/yazi-theme.toml'
+output_path = '~/.config/yazi/theme.toml'
+
+[templates.vicinae]
+input_path = './templates/vicinae.toml'
+output_path = '~/.local/share/vicinae/themes/matugen.toml'
+post_hook = 'vicinae theme set matugen'
+
 [templates.neovim]
 input_path = './templates/base16-colors.lua'
 output_path = '~/.config/nvim/lua/colors.lua'
