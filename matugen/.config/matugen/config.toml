@@ -6,6 +6,11 @@ set = true
 command = "/home/usernob/.config/matugen/change_wallpaper.sh"
 post_hook = "systemctl --user restart swaybg.service"
 
+[templates.niri]
+input_path = './templates/niri.kdl'
+output_path = '~/.config/niri/colors.kdl'
+pre_hook = "niri msg action do-screen-transition --delay-ms 300"
+
 [templates.kitty]
 input_path = './templates/kitty-colors.conf'
 output_path = '~/.config/kitty/themes/matugen.conf'
