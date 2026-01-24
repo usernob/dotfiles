@@ -1,5 +1,7 @@
+--- @module "lazy.types"
+--- @type LazySpec
+-- This is a list of plugins that doesn't require complex configuration
 return {
-    --This is a list of plugins that do not require additional configuration
     { "wakatime/vim-wakatime", cond = false, event = "VeryLazy" },
     {
         "kylechui/nvim-surround",
@@ -12,9 +14,11 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         event = "VeryLazy",
         main = "ibl",
+        --- @module "ibl"
+        --- @type ibl.config
         opts = {
-            indent = { char = "│", highlight = "Comment" },
-            scope = { char = "│", enabled = false },
+            indent = { char = "│" },
+            scope = { char = "│", enabled = true },
         },
     },
 
