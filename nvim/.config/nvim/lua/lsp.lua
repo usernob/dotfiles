@@ -26,7 +26,7 @@ vim.diagnostic.config({
     },
     float = {
         source = true,
-        border = "rounded"
+        border = "rounded",
     },
     signs = {
         text = {
@@ -49,9 +49,9 @@ vim.diagnostic.config({
         },
     },
     jump = {
-        on_jump = function (_, _)
+        on_jump = function(_, _)
             vim.diagnostic.open_float()
-        end
+        end,
     },
     severity_sort = true,
 })
