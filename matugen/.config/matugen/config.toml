@@ -3,8 +3,7 @@ caching = true
 
 [config.wallpaper]
 set = true
-command = "/home/usernob/.config/matugen/change_wallpaper.sh"
-post_hook = "systemctl --user restart swaybg.service"
+command = "sh -c 'ln -sf {{image}} ~/Pictures/wallpapers/current_wallpaper && systemctl --user restart swaybg.service'"
 
 [templates.niri]
 input_path = './templates/niri.kdl'
@@ -34,19 +33,14 @@ output_path = '~/.config/btop/themes/matugen.theme'
 input_path = './templates/zathura-colors'
 output_path = '~/.config/zathura/zathurarc'
 
-[templates.yazi]
-input_path = './templates/yazi-theme.toml'
-output_path = '~/.config/yazi/theme.toml'
-
 [templates.vicinae]
 input_path = './templates/vicinae.toml'
 output_path = '~/.local/share/vicinae/themes/matugen.toml'
 post_hook = 'vicinae theme set matugen'
 
 [templates.neovim]
-input_path = './templates/base16-colors.lua'
+input_path = './templates/neovim-colors.lua'
 output_path = '~/.config/nvim/lua/colors.lua'
-post_hook = 'pkill -SIGUSR1 nvim'
 
 [templates.qt5ct]
 input_path = './templates/qtct-colors.conf'
@@ -63,16 +57,25 @@ post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings s
 
 [templates.gtk4]
 input_path = './templates/gtk-colors.css'
-output_path = '~/.config/gtk-4.0/colors.css'
+output_path = '~/.config/gtk-4.0/libadwaita-tweaks.css'
 
 # # Only hex values
 # # https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e
 # # Blend is set to true by default. 
-# [config.custom_colors]
-# red  = "#e06c75"
-# orange  = "#d19a66"
-# yellow  = "#e5c07b"
-# green  = "#98c379"
-# cyan  = "#56b6c2"
-# blue  = "#61afef"
-# magenta  = "#c678dd"
+[config.custom_colors]
+base00 = "#0c0c0e"
+base01 = "#151518"
+base02 = "#28282e"
+base03 = "#313139"
+base04 = "#464652"
+base05 = "#b3bac6"
+base06 = "#b6bdca"
+base07 = "#c8ccd4"
+base08 = "#e06c75"
+base09 = "#d19a66"
+base0A = "#e5c07b"
+base0B = "#98c379"
+base0C = "#56b6c2"
+base0D = "#61afef"
+base0E = "#c678dd"
+base0F = "#be5046"

@@ -1,21 +1,27 @@
 @import "colors.css";
 
+@define-color background @base00_source;
+@define-color foreground @base05_source;
+@define-color waybar-error @base08_source;
+@define-color waybar-warning @base09_source;
+@define-color waybar-success @base0B_source;
+
 * {
   font-family: "Geist", "JetBrains Mono Nerd Font Propo";
   font-size: 14px;
   font-weight: 600;
   min-width: 0;
   min-height: 0;
-  color: @on_surface;
+  color: @foreground;
 }
 
 #waybar {
-  background-color: @surface;
+  background-color: @background;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 tooltip {
-  background-color: @surface;
+  background-color: @background;
   font-weight: 400;
   border: 2px solid @outline;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -58,15 +64,15 @@ tooltip {
 
 #workspaces button.active {
   font-weight: 800;
-  background-color: @on_surface;
+  background-color: @foreground;
 }
 
 #workspaces button.active label {
-  color: @surface;
+  color: @background;
 }
 
 #workspaces button:hover:not(.active) {
-  background-color: @secondary_container;
+  background-color: @base02_source;
 }
 
 window#waybar.empty #window {
@@ -77,35 +83,35 @@ window#waybar.empty #window {
 }
 
 #cpu.warning {
-  color: @error;
+  color: @waybar-warning;
 }
 
 #cpu.critical {
-  color: @on_error_container;
+  color: @waybar-error;
 }
 
 #memory.warning {
-  color: @error;
+  color: @waybar-warning;
 }
 
 #memory.critical {
-  color: @on_error_container;
+  color: @waybar-error;
 }
 
 #temperature.critical {
-  color: @error;
+  color: @waybar-error;
 }
 
 #battery.charging {
-  color: @on_surface;
+  color: @waybar-success;
 }
 
 #battery.warning:not(.charging) {
-  color: @on_error_container;
+  color: @foreground;
 }
 
 #battery.critical:not(.charging) {
-  color: @error;
+  color: @waybar-error;
 }
 
 #clock {

@@ -3,6 +3,6 @@ layout {
         active-color "{{colors.outline.default.hex}}"
         inactive-color "{{colors.outline_variant.default.hex}}"
 
-        urgent-color "{{colors.error.default.hex}}"
+        urgent-color "{{colors.base00_source.default.hex}}"
     }
 }
