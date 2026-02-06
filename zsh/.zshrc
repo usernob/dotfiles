@@ -29,17 +29,17 @@ timezsh() {
 # fi
 
 # antidote
-[[ -d ${ZDOTDIR:-~}/.antidote ]] ||
-  git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-~}/.antidote
+[[ -d ${ZDOTDIR:-$HOME}/.antidote ]] ||
+  git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
 
 # Set the name of the static .zsh plugins file antidote will generate.
-zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins.zsh
+zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins.zsh
 
 # Ensure you have a .zsh_plugins.txt file where you can add plugins.
 [[ -f ${zsh_plugins:r}.txt ]] || touch ${zsh_plugins:r}.txt
 
 # Lazy-load antidote.
-fpath+=(${ZDOTDIR:-~}/.antidote/functions)
+fpath+=(${ZDOTDIR:-$HOME}/.antidote/functions)
 autoload -Uz $fpath[-1]/antidote
 
 # Generate static file in a subshell when .zsh_plugins.txt is updated.
@@ -63,5 +63,13 @@ gpgconf --launch gpg-agent
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -A --color=always --icons --group-directories-first $realpath'
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^[e' edit-command-lin
+
 alias ls="eza --color=always --icons --group-directories-first"
 alias la="eza --color=always --icons --group-directories-first -lA"
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
