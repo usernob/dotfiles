@@ -17,6 +17,9 @@ map("n", "<leader>x", ":.lua<CR>", { desc = "LUA: run this current line" })
 map("v", "<leader>x", ":lua<CR>", { desc = "LUA: run this selection line" })
 map("n", "<leader>X", "<CMD>source %<CR>", { desc = "LUA: source this file" })
 
+map("v", "<", "<gv", { desc = "increase indentation" })
+map("v", ">", ">gv", { desc = "decrease indentation" })
+
 -- disable arrow keys
 local opts = { noremap = true, silent = true }
 for _, value in pairs({ "<Up>", "<Right>", "<Down>", "<Left>" }) do

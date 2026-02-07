@@ -73,3 +73,17 @@ opt.updatetime = 250
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append("<>[]hl")
 
+if vim.g.neovide then
+    opt.guifont = "JetBrainsMono NFM:h11"
+    opt.linespace = 3
+
+    g.neovide_padding_top = 10
+    g.neovide_padding_bottom = 10
+    g.neovide_padding_right = 10
+    g.neovide_padding_left = 10
+
+    g.neovide_title_background_color = string.format(
+        "%x",
+        vim.api.nvim_get_hl(0, { id = vim.api.nvim_get_hl_id_by_name("Normal") }).bg
+    )
+end

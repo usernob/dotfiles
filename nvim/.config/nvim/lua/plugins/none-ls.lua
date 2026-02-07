@@ -17,7 +17,9 @@ return {
                 code_action.gitsigns,
 
                 formatting.stylua,
-                formatting.prettier,
+                formatting.prettier.with({
+                    extra_filetypes = { "blade" },
+                }),
                 formatting.clang_format,
                 formatting.cmake_format,
                 formatting.biome,
@@ -25,26 +27,6 @@ return {
 
                 diagnostics.cmake_lint,
             }
-
-            -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-            --
-            -- opts.on_attach = function(client, bufnr)
-            -- 	if client.supports_method("textDocument/formatting") then
-            -- 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            -- 		vim.api.nvim_create_autocmd("BufWritePre", {
-            -- 			group = augroup,
-            -- 			buffer = bufnr,
-            -- 			callback = function()
-            -- 				vim.lsp.buf.format({
-            -- 					filter = function(lspclient)
-            -- 						return lspclient.name == "null-ls"
-            -- 					end,
-            -- 					bufnr = bufnr,
-            -- 				})
-            -- 			end,
-            -- 		})
-            -- 	end
-            -- end
 
             null_ls.setup(opts)
 

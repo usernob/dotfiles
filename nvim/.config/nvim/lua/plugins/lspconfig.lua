@@ -65,7 +65,6 @@ local servers = {
             "--completion-style=detailed",
             "--cross-file-rename",
             "--header-insertion=iwyu",
-            "--experimental-modules-support",
         },
         on_attach = function(_, _)
             vim.keymap.set(
@@ -140,7 +139,11 @@ local servers = {
     taplo = true,
     zls = true,
     nixd = true,
-    html = true,
+    html = {
+        on_attach = function(client)
+            vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
+        end,
+    },
     cssls = true,
     eslint = true,
     emmet_language_server = {

@@ -1,14 +1,5 @@
 vim.g.mapleader = " "
 
-require("options")
-require("mappings")
-require("autocmd")
-require("filetype")
-require("lsp")
-vim.o.statusline = "%!v:lua.require('statusline')()"
--- vim.o.statusline = " %(%r %)%{%&bt==''?&ft==''?'%f':'%f %LL %m%=%l,%-2c':''%} "
--- vim.cmd('colorscheme test')
-
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -25,3 +16,11 @@ local lazy_config = require("lazy-config")
 require("lazy").setup({
     { import = "plugins" },
 }, lazy_config)
+
+require("options")
+require("mappings")
+require("autocmd")
+require("filetype")
+require("highlights")
+require("lsp")
+vim.o.statusline = "%!v:lua.require('statusline')()"
