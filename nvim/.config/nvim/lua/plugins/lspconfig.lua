@@ -151,6 +151,7 @@ local servers = {
     },
     ts_ls = true,
     intelephense = true,
+    bashls = true,
 }
 
 return {
