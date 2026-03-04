@@ -11,3 +11,4 @@ export _ZO_FZF_OPTS="${FZF_DEFAULT_OPTS:-} --height 40% --nth=2 --read0 --previe
 
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
+export PATH="$HOME/.cargo/bin:$PATH"

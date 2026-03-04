@@ -65,7 +65,7 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '^[e' edit-command-lin
+bindkey '^[e' edit-command-line
 
 alias ls="eza --color=always --icons --group-directories-first"
 alias la="eza --color=always --icons --group-directories-first -lA"
