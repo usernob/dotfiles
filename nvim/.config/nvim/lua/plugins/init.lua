@@ -40,8 +40,6 @@ return {
         opts = {},
     },
 
-    { "b0o/schemastore.nvim" },
-
     {
         "numToStr/Comment.nvim",
         opts = {},

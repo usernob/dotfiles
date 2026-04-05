@@ -12,6 +12,7 @@
 --
 
 --- @param server_config vim.lsp.Config
+--- @return boolean
 local lsp_binary_exists = function(server_config)
     local valid_config = server_config.cmd and type(server_config.cmd) == "table" -- or array of string
 
@@ -24,166 +25,172 @@ local lsp_binary_exists = function(server_config)
     return vim.fn.executable(binary) == 1
 end
 
---- @type table<string, boolean|vim.lsp.Config>
-local servers = {
-    lua_ls = {
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { "vim" },
+local setup_server = function()
+    --- @type table<string, boolean|vim.lsp.Config>
+    local servers = {
+        lua_ls = {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        checkThirdParty = false,
+                        maxPreload = 100000,
+                        preloadFileSize = 10000,
+                    },
+                    codelens = {
+                        enable = true,
+                    },
+                    completion = {
+                        callSnippet = "Replace",
+                    },
+                    hint = {
+                        enable = true,
+                        setType = true,
+                    },
                 },
-                workspace = {
-                    checkThirdParty = false,
-                    maxPreload = 100000,
-                    preloadFileSize = 10000,
+            },
+        },
+        hyprls = {
+            filetypes = { "*.hl", "hypr*.conf", ".config/hypr/*.conf", "hyprlang" },
+        },
+        clangd = {
+            cmd = {
+                -- see clangd --help-hidden
+                "clangd",
+                "--background-index",
+                -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
+                -- to add more checks, create .clang-tidy file in the root directory
+                -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
+                "--clang-tidy",
+                "--completion-style=detailed",
+                "--cross-file-rename",
+                "--header-insertion=iwyu",
+            },
+            on_attach = function(_, _)
+                vim.keymap.set(
+                    "n",
+                    "<leader>sh",
+                    "<cmd>LspClangdSwitchSourceHeader<cr>",
+                    { desc = "LSP(clangd) switch between source/header" }
+                )
+                vim.keymap.set(
+                    "n",
+                    "<leader>si",
+                    "<cmd>LspClangdShowSymbolInfo<cr>",
+                    { desc = "LSP(clangd) show symbol info" }
+                )
+            end,
+        },
+        yamlls = {
+            settings = {
+                yaml = {
+                    schemaStore = {
+                        -- You must disable built-in schemaStore support if you want to use
+                        -- this plugin and its advanced options like `ignore`.
+                        enable = false,
+                        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                        url = "",
+                    },
+                    schemas = require("schemastore").yaml.schemas(),
                 },
-                codelens = {
+            },
+        },
+        jsonls = {
+            settings = {
+                json = {
+                    schemas = require("schemastore").json.schemas(),
+                    validate = { enable = true },
+                },
+            },
+        },
+        tinymist = {
+            settings = {
+                lint = {
                     enable = true,
+                    when = "onSave",
                 },
-                completion = {
-                    callSnippet = "Replace",
-                },
-                hint = {
-                    enable = true,
-                    setType = true,
-                },
-            },
-        },
-    },
-    hyprls = {
-        filetypes = { "*.hl", "hypr*.conf", ".config/hypr/*.conf", "hyprlang" },
-    },
-    clangd = {
-        cmd = {
-            -- see clangd --help-hidden
-            "clangd",
-            "--background-index",
-            -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
-            -- to add more checks, create .clang-tidy file in the root directory
-            -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
-            "--clang-tidy",
-            "--completion-style=detailed",
-            "--cross-file-rename",
-            "--header-insertion=iwyu",
-        },
-        on_attach = function(_, _)
-            vim.keymap.set(
-                "n",
-                "<leader>sh",
-                "<cmd>LspClangdSwitchSourceHeader<cr>",
-                { desc = "LSP(clangd) switch between source/header" }
-            )
-            vim.keymap.set(
-                "n",
-                "<leader>si",
-                "<cmd>LspClangdShowSymbolInfo<cr>",
-                { desc = "LSP(clangd) show symbol info" }
-            )
-        end,
-    },
-    yamlls = {
-        settings = {
-            yaml = {
-                schemaStore = {
-                    -- You must disable built-in schemaStore support if you want to use
-                    -- this plugin and its advanced options like `ignore`.
-                    enable = false,
-                    -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                    url = "",
-                },
-                schemas = require("schemastore").yaml.schemas(),
-            },
-        },
-    },
-    jsonls = {
-        settings = {
-            json = {
-                schemas = require("schemastore").json.schemas(),
-                validate = { enable = true },
-            },
-        },
-    },
-    tinymist = {
-        settings = {
-            lint = {
-                enable = true,
-                when = "onSave",
-            },
-            formatterMode = "typstyle",
-            exportPdf = "onSave",
+                formatterMode = "typstyle",
+                exportPdf = "onSave",
 
-            outputPath = "$root/target/$dir/$name",
-        },
-    },
-    pyright = {
-        settings = {
-            pyright = {
-                disableOrganizeImports = true,
+                outputPath = "$root/target/$dir/$name",
             },
-            python = {
-                analysis = {
-                    ignore = { "*" },
+        },
+        pyright = {
+            settings = {
+                pyright = {
+                    disableOrganizeImports = true,
+                },
+                python = {
+                    analysis = {
+                        ignore = { "*" },
+                    },
                 },
             },
         },
-    },
-    ruff = {
-        on_attach = function(client, _)
-            client.server_capabilities.hoverProvider = false
-        end,
-    },
-    biome = true,
-    rust_analyzer = true,
-    tailwindcss = true,
-    svelte = true,
-    taplo = true,
-    zls = true,
-    nixd = true,
-    html = {
-        on_attach = function(client)
-            vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
-        end,
-    },
-    cssls = true,
-    eslint = true,
-    emmet_language_server = {
-        filetypes = { "php", "html", "blade" },
-    },
-    ts_ls = true,
-    intelephense = true,
-    bashls = true,
-}
+        ruff = {
+            on_attach = function(client, _)
+                client.server_capabilities.hoverProvider = false
+            end,
+        },
+        biome = true,
+        rust_analyzer = true,
+        tailwindcss = true,
+        svelte = true,
+        taplo = true,
+        zls = true,
+        nixd = true,
+        html = {
+            on_attach = function(client)
+                vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
+            end,
+        },
+        cssls = true,
+        eslint = true,
+        emmet_language_server = {
+            filetypes = { "php", "html", "blade" },
+        },
+        ts_ls = true,
+        intelephense = true,
+        bashls = true,
+    }
+
+    for name, opts in pairs(servers) do
+        if type(opts) == "boolean" then
+            if not opts then
+                goto continue
+            end
+            opts = {}
+        end
+        -- workaround to extend default on attach from lspconfig
+        -- TODO: because the type of on_attach is elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>
+        -- maybe we can define that by array of functions?
+        local default_on_attach = vim.lsp.config[name].on_attach
+        local user_on_attach = opts.on_attach
+        opts.on_attach = function(client, bufnr)
+            if default_on_attach then
+                default_on_attach(client, bufnr)
+            end
+            if user_on_attach then
+                user_on_attach(client, bufnr)
+            end
+        end
+
+        vim.lsp.config(name, opts)
+        if lsp_binary_exists(vim.lsp.config[name]) then
+            vim.lsp.enable(name)
+        end
+        ::continue::
+    end
+end
 
 return {
-    "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-        for name, opts in pairs(servers) do
-            if type(opts) == "boolean" then
-                if not opts then
-                    goto continue
-                end
-                opts = {}
-            end
-            -- workaround to extend default on attach from lspconfig
-            -- TODO: because the type of on_attach is elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>
-            -- maybe we can define that by array of functions?
-            local default_on_attach = vim.lsp.config[name].on_attach
-            local user_on_attach = opts.on_attach
-            opts.on_attach = function(client, bufnr)
-                if default_on_attach then
-                    default_on_attach(client, bufnr)
-                end
-                if user_on_attach then
-                    user_on_attach(client, bufnr)
-                end
-            end
+    {
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        config = setup_server,
+    },
 
-            vim.lsp.config(name, opts)
-            if lsp_binary_exists(vim.lsp.config[name]) then
-                vim.lsp.enable(name)
-            end
-            ::continue::
-        end
-    end,
+    { "b0o/schemastore.nvim" },
 }
