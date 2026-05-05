@@ -63,6 +63,8 @@ gpgconf --launch gpg-agent
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -A --color=always --icons --group-directories-first $realpath'
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
+bindkey -e
+
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^[e' edit-command-line
