@@ -7,7 +7,6 @@ vim.lsp.buf.hover = function()
     return hover({
         max_width = 100,
         max_height = 14,
-        border = "rounded",
     })
 end
 
@@ -16,7 +15,6 @@ vim.lsp.buf.signature_help = function()
     return signature_help({
         max_width = 100,
         max_height = 14,
-        border = "rounded",
     })
 end
 
@@ -26,7 +24,6 @@ vim.diagnostic.config({
     },
     float = {
         source = true,
-        border = "rounded",
     },
     signs = {
         text = {

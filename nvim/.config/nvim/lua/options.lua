@@ -66,6 +66,9 @@ opt.mouse = "a"
 opt.wrap = false
 opt.scrolloff = 8
 
+opt.winborder = "solid"
+opt.pumborder = "none"
+
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
 

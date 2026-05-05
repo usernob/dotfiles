@@ -59,6 +59,7 @@ return {
             },
             accept = { auto_brackets = { enabled = true } },
             menu = {
+                border = "none",
                 draw = {
                     padding = 1,
                     columns = {
@@ -90,8 +91,8 @@ return {
                 auto_show = true,
                 auto_show_delay_ms = 200,
                 window = {
-                    border = "rounded",
-                    winhighlight = "Normal:BlinkCmpDoc,FloatBorder:FloatBorder,EndOfBuffer:BlinkCmpDoc",
+                    border = "solid",
+                    winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,EndOfBuffer:BlinkCmpDoc",
                 },
             },
         },
@@ -99,9 +100,9 @@ return {
         signature = {
             enabled = true,
             window = {
-                border = "rounded",
+                border = "single",
                 show_documentation = true,
-                winhighlight = "Normal:BlinkCmpSignatureHelp,FloatBorder:FloatBorder",
+                winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
             },
         },
 
