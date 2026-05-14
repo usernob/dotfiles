@@ -21,6 +21,7 @@ require("options")
 require("mappings")
 require("autocmd")
 require("filetype")
-require("highlights")
 require("lsp")
+
 vim.o.statusline = "%!v:lua.require('statusline')()"
+vim.cmd("colorscheme mytheme")
