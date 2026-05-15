@@ -50,6 +50,7 @@ layout {
 
 gestures {
     hot-corners {
+        off
     }
 }
 
@@ -74,7 +75,6 @@ window-rule {
 
 window-rule {
     match app-id=r#"^PacketTracer$"#
-    // ...except the media viewer window.
     exclude title="^Cisco Packet Tracer$"
     open-floating true
 }
@@ -85,13 +85,30 @@ layer-rule {
 }
 
 layer-rule {
-    match namespace="^launcher$|rofi"
+    match namespace="^launcher$|rofi|vicinae"
     shadow {
         on
         softness 44
         spread 7
         offset x=0 y=8
         color "rgba(0, 0, 0, 0.40)"
+        draw-behind-window true
+    }
+    opacity 1.0
+    background-effect {
+        blur true
+    }
+
+}
+
+// Make top and overlay layers use the regular blur (if enabled),
+// while bottom and background layers keep using the efficient xray blur.
+layer-rule {
+    match layer="top"
+    match layer="overlay"
+
+    background-effect {
+        xray false
     }
 }
 
@@ -103,8 +120,21 @@ window-rule {
 }
 
 window-rule {
-    geometry-corner-radius 8
+    // Matches the default libadwaita pop-up corner radius.
+    geometry-corner-radius 15
     clip-to-geometry true
+
+    background-effect {
+        blur true
+    }
+
+    popups {
+        geometry-corner-radius 15
+
+        background-effect {
+            blur true
+        }
+    }
 }
 
 cursor {
@@ -143,7 +173,6 @@ hotkey-overlay {
 
 overview {
     zoom 0.5
-    backdrop-color "#262626"
     workspace-shadow {
         softness 40
         spread 10
@@ -161,7 +190,6 @@ binds {
     Mod+Return repeat=false hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
     Mod+E repeat=false hotkey-overlay-title="Open a File Manager" { spawn "nautilus"; }
     Mod+D repeat=false hotkey-overlay-title="Run an Launcher" { spawn "vicinae" "toggle"; }
-    Mod+N repeat=false hotkey-overlay-title="Run an Application: networkmanager_dmenu" { spawn "networkmanager_dmenu"; } // TODO: move all to vicinae?
     Mod+M repeat=false hotkey-overlay-title="Run wlogout" { spawn "wlogout" "-s" "-b" "4"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "1%+"; }
@@ -297,8 +325,6 @@ binds {
     Mod+Print repeat=false hotkey-overlay-title="Screenshot window" { screenshot-window; }
     Mod+Shift+Print repeat=false hotkey-overlay-title="Screenshot window to clipboard" { screenshot-window write-to-disk=false; }
     
-    Mod+P { spawn-sh "rofi -modi clipboard:~/.local/bin/clipvault-rofi.sh -show clipboard -show-icons"; }
-
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     Mod+Shift+E { quit; }
