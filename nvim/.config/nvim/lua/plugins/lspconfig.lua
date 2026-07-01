@@ -11,20 +11,6 @@
 -- TODO: for now, just wait for this issue(https://github.com/neovim/neovim/issues/33577#issuecomment-3568292351) to be merged
 --
 
---- @param server_config vim.lsp.Config
---- @return boolean
-local lsp_binary_exists = function(server_config)
-    local valid_config = server_config.cmd and type(server_config.cmd) == "table" -- or array of string
-
-    if not valid_config then
-        return false
-    end
-
-    local binary = server_config.cmd[1]
-
-    return vim.fn.executable(binary) == 1
-end
-
 local setup_server = function()
     --- @type table<string, boolean|vim.lsp.Config>
     local servers = {
@@ -64,6 +50,7 @@ local setup_server = function()
                 -- to add more checks, create .clang-tidy file in the root directory
                 -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
                 "--clang-tidy",
+                "--query-driver=**/*gcc*,**/*g++*",
                 "--completion-style=detailed",
                 "--cross-file-rename",
                 "--header-insertion=iwyu",
@@ -154,13 +141,11 @@ local setup_server = function()
         ts_ls = true,
         intelephense = true,
         bashls = true,
+        qmlls = true,
     }
 
     for name, opts in pairs(servers) do
         if type(opts) == "boolean" then
-            if not opts then
-                goto continue
-            end
             opts = {}
         end
         -- workaround to extend default on attach from lspconfig
@@ -178,10 +163,8 @@ local setup_server = function()
         end
 
         vim.lsp.config(name, opts)
-        if lsp_binary_exists(vim.lsp.config[name]) then
-            vim.lsp.enable(name)
-        end
-        ::continue::
+        vim.lsp.enable(name)
+        -- end
     end
 end
 

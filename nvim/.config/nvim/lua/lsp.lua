@@ -53,28 +53,44 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
-local setupInlayHint = function()
-    vim.lsp.inlay_hint.enable(true)
-    vim.keymap.set("n", "<leader>ih", function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
-    end, { desc = "Toggle inlay hints" })
-end
-
 vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if not client then
             return
         end
 
-        if client.server_capabilities.inlayHintProvider then
-            setupInlayHint()
+        if client:supports_method("textDocument/inlayHint") then
+            vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+            vim.keymap.set("n", "<leader>ih", function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+            end, { desc = "Toggle inlay hints" })
+        end
+
+        if client:supports_method("textDocument/formatting") then
+            vim.keymap.set("n", "<leader>fs", vim.lsp.buf.format, { desc = "LSP format" })
         end
 
         if client:supports_method("textDocument/foldingRange") then
             local window = vim.api.nvim_get_current_win()
             vim.wo[window][0].foldmethod = "expr"
             vim.wo[window][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+        end
+
+        if client:supports_method("textDocument/documentHighlight") then
+            local highlight_group = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                group = highlight_group,
+                buffer = ev.buf,
+                callback = vim.lsp.buf.document_highlight,
+            })
+
+            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+                group = highlight_group,
+                buffer = ev.buf,
+                callback = vim.lsp.buf.clear_references,
+            })
         end
 
         vim.keymap.set("n", "grd", vim.diagnostic.open_float, { desc = "Diagnostic open float" })
