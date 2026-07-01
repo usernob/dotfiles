@@ -1,3 +1,15 @@
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(ev)
+        -- only activate for installed filetype
+        local nvim_treesitter = require("nvim-treesitter")
+        local installed = nvim_treesitter.get_installed()
+
+        if vim.tbl_contains(installed, ev.match) then
+            vim.treesitter.start(ev.buf)
+        end
+    end,
+})
+
 return {
     {
         "nvim-treesitter/nvim-treesitter",
